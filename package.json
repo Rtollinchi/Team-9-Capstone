@@ -1,5 +1,5 @@
 {
-  "name": "app-template",
+  "name": "task-manager",
   "version": "2.0.0",
   "description": "SHAKE AND BAKE",
   "main": "index.js",
