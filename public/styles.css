@@ -1,27 +1,33 @@
 body {
-    font-family: sans-serif;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  label {
-    display: block;
-  }
-  
-  nav a {
-    display: inline-block;
-    margin: 1em;
-  }
-  
-  form div {
-    margin: 1em;
-    display: inline-block;
-  }
+  font-family: sans-serif;
+}
 
-  .container {
-    background-color: black;
-    color: white;
+a {
+  text-decoration: none;
+}
 
-  }
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.container {
+  background-color: black;
+  color: white;
+}
+.scroll-box {
+  height: 200px; /* set a fixed height for the scroll box */
+  overflow: auto; /* enable scrolling */
+}
+img {
+  width: 30px;
+}
