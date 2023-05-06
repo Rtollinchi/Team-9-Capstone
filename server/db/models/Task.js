@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const User = require("./User");
 
 const Task = db.define("task", {
   id: {
@@ -10,6 +11,12 @@ const Task = db.define("task", {
   userId: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    reference: {
+      model: User,
+      key: "id",
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   },
   title: {
     type: Sequelize.STRING,
@@ -21,11 +28,9 @@ const Task = db.define("task", {
   },
   scheduledTime: {
     type: Sequelize.DATE,
-    allowNull: false,
   },
   dueDate: {
     type: Sequelize.DATE,
-    allowNull: false,
   },
   priority: {
     type: Sequelize.STRING,

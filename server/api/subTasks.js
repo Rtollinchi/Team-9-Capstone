@@ -4,10 +4,10 @@ const {
 } = require("../db");
 
 //find all belonging to user
-router.get("/:taskId", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const { taskId } = req.params;
   try {
-    const subTask = await SubTask.findAll({ where: { taskId } });
+    const subTask = await SubTask.findAll();
     res.json(subTask);
   } catch (err) {
     next(err);

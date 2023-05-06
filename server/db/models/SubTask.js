@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const Task = require("./Task");
 
 const SubTask = db.define("subTask", {
   id: {
@@ -10,6 +11,12 @@ const SubTask = db.define("subTask", {
   taskId: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    reference: {
+      model: Task,
+      key: "id",
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   },
   title: {
     type: Sequelize.STRING,
