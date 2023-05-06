@@ -2,16 +2,8 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Task, SubTask },
 } = require("../server/db");
-
-/**
- * seed - this function clears the database, updates tables to
- *      match the models, and populates the database.
- */
-// ("use strict");
-
-// const { db, User, Task, SubTask } = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
