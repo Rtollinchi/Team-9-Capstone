@@ -1,29 +1,112 @@
-'use strict'
+"use strict";
 
-const {db, models: {User} } = require('../server/db')
+const {
+  db,
+  models: { User, Task, SubTask },
+} = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
 async function seed() {
-  await db.sync({ force: true }) // clears db and matches models to tables
-  console.log('db synced!')
+  await db.sync({ force: true }); // clears db and matches models to tables
+  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+    User.create({
+      email: "cody@example.com",
+      password: "123",
+      displayName: "Cody",
+    }),
+    User.create({
+      email: "murphy@example.com",
+      password: "456",
+      displayName: "Murphy",
+    }),
+    User.create({
+      email: "rodeny@example.com",
+      password: "789",
+      displayName: "Rodney",
+    }),
+  ]);
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  // Creating Tasks
+
+  const tasks = await Promise.all([
+    Task.create({
+      userId: 1,
+      title: "Do the dishes",
+      description: "Wash the dishes and put them away",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+    Task.create({
+      userId: 2,
+      title: "walk the dog",
+      description: "Take the dog for a walk",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+    Task.create({
+      userId: 3,
+      title: "work on capstone",
+      description: "Work on capstone project",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+  ]);
+
+  // Creating SubTasks
+
+  const subTasks = await Promise.all([
+    SubTask.create({
+      taskId: 1,
+      title: "dry the dishes",
+      description: "Dry the dishes and put them away",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+    SubTask.create({
+      taskId: 2,
+      title: "feed the dog",
+      description: "Feed the dog",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+    SubTask.create({
+      taskId: 3,
+      title: "create DB",
+      description: "Create the database for the project",
+      scheduledTime: "2021-03-01 12:00:00",
+      dueDate: "2021-03-01 12:00:00",
+      priority: "High",
+      isCompleted: false,
+    }),
+  ]);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${tasks.length} tasks`);
+  console.log(`seeded ${subTasks.length} subTasks`);
+  console.log(`seeded successfully`);
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
-    }
-  }
+      murphy: users[1],
+      rodney: users[2],
+    },
+  };
 }
 
 /*
@@ -32,16 +115,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...')
+  console.log("seeding...");
   try {
-    await seed()
+    await seed();
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
+    console.error(err);
+    process.exitCode = 1;
   } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log("closing db connection");
+    await db.close();
+    console.log("db connection closed");
   }
 }
 
@@ -51,8 +134,8 @@ async function runSeed() {
   any errors that might occur inside of `seed`.
 */
 if (module === require.main) {
-  runSeed()
+  runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed
+module.exports = seed;
