@@ -7,8 +7,8 @@ const {
 router.get("/", async (req, res, next) => {
   // const { userId } = req.params;{ where: { userId } }
   try {
-    const task = await Task.findAll();
-    res.json(task);
+    const tasks = await Task.findAll();
+    res.json(tasks);
   } catch (err) {
     next(err);
   }
