@@ -13,15 +13,15 @@ const User = db.define("user", {
   },
   email: {
     type: Sequelize.STRING,
+  },
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
     allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
-  dispalyName: {
-    type: Sequelize.STRING,
-    allowNull: true,
   },
   avatarUrl: {
     type: Sequelize.STRING,

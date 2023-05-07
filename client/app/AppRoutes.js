@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/home/Home';
-import { me } from './store';
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../features/auth/AuthForm";
+import Home from "../features/home/Home";
+import { me } from "./store";
+import AddTask from "../features/addTask/AddTask";
+import AddSubTask from "../features/addSubTask/AddSubTask";
+import Calendar from "../features/calendar/Calendar";
 /**
  * COMPONENT
  */
@@ -21,8 +23,11 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/addTask" element={<AddTask />} />
+          <Route path="/addSubTask" element={<AddSubTask />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       ) : (
         <Routes>
