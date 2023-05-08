@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
-
-import { addTask } from "../slices/TaskSlice";
+import { addTasks } from "../slices/TaskSlice";
 
 const AddTask = () => {
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [priority, setPriority] = useState();
+  const dispatch = useDispatch("");
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("");
+  //using react datepicker to grab current date
   const [dueDate, setDueDate] = useState(new Date());
 
-  const handleSubmit = async (evt) => {
-    await evt.preventDefault();
-    dispatch(addCardAsync({ title, description, dueDate, priority }));
+  //grabbing current user to attach userId to task
+  const currentUser = useSelector((state) => state.auth.me);
+  const userId = currentUser.id;
+
+  const handleSubmit = async (e) => {
+    await e.preventDefault();
+    dispatch(addTasks({ title, description, dueDate, priority, userId }));
     setTitle("");
     setDescription("");
     setPriority("");
     setDueDate("");
   };
+
   return (
     <div>
       <h1>add task here</h1>
@@ -35,7 +41,11 @@ const AddTask = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
+        <DatePicker
+          className="border rounded"
+          selected={dueDate}
+          onChange={(date) => setDueDate(date)}
+        />
         <label htmlFor="priority">Priority:</label>
         <select
           name="priority"
