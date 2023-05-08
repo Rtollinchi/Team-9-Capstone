@@ -8,9 +8,10 @@ import axios from "axios";
 /*
   THUNKS
 */
-export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
+export const fetchTasks = createAsyncThunk("fetchTasks", async (id) => {
   try {
-    const { data } = await axios.get("/api/tasks");
+    console.log(id);
+    const { data } = await axios.get("/api/tasks", { params: { userId: id } });
     console.log(data);
     return data;
   } catch (err) {

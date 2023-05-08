@@ -5,9 +5,9 @@ const {
 
 //find all belonging to user
 router.get("/", async (req, res, next) => {
-  // const { userId } = req.params;{ where: { userId } }
+  const { userId } = req.query;
   try {
-    const tasks = await Task.findAll();
+    const tasks = await Task.findAll({ where: { userId } });
     res.json(tasks);
   } catch (err) {
     next(err);
