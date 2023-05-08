@@ -31,3 +31,6 @@ form div {
 img {
   width: 30px;
 }
+.datepicker {
+  max-width: 400px;
+}
