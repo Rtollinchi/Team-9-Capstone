@@ -18,6 +18,7 @@ export const fetchTasks = createAsyncThunk("fetchTasks", async (id) => {
     next(err);
   }
 });
+
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
   try {
     const response = await axios.post("/api/tasks", props);
