@@ -1,13 +1,25 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import Fullcalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 const Calendar = () => {
-  const dispatch = useDispatch;
-
   return (
     <div>
-      <h1>calendar</h1>
+      <Fullcalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView={"dayGridMonth"}
+        headerToolbar={{
+          start: "today prev,next", // will normally be on the left. if RTL, will be on the right
+          center: "title",
+          end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
+        }}
+        height={"90vh"}
+      />
     </div>
   );
-};
+}
+
+
 export default Calendar;
