@@ -26,7 +26,7 @@ const Home = () => {
       </span>
       <div className="scroll-box">
         <ul>
-          {tasks ? (
+          {tasks.length > 0 ? (
             tasks.map((task) => {
               return <li key={task.id}>{task.title}</li>;
             })

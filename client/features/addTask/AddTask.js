@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DatePicker from "react-datepicker";
+
 import { addTasks } from "../slices/TaskSlice";
 
 const AddTask = () => {
@@ -18,7 +18,7 @@ const AddTask = () => {
 
   const handleSubmit = async (e) => {
     await e.preventDefault();
-    dispatch(addTasks({ title, description, dueDate, priority, userId }));
+    dispatch(addTasks({ title, description, priority, userId }));
     setTitle("");
     setDescription("");
     setPriority("");
@@ -41,11 +41,7 @@ const AddTask = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <DatePicker
-          className="border rounded"
-          selected={dueDate}
-          onChange={(date) => setDueDate(date)}
-        />
+
         <label htmlFor="priority">Priority:</label>
         <select
           name="priority"
