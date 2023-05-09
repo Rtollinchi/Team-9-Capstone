@@ -15,19 +15,18 @@ const AddSubTask = () => {
   const [priority, setPriority] = useState("");
   // using react datepicker to grab current date
   const [dueDate, setDueDate] = useState(new Date());
-
+  const currentUser = useSelector((state) => state.auth.me);
+  const userId = currentUser.id;
   useEffect(() => {
-    dispatch(fetchTasks(currentUser.Id));
+    dispatch(fetchTasks(userId));
   }, []);
 
   const tasks = useSelector(selectTasks);
-
-  const currentUser = useSelector((state) => state.auth.me);
-
+  console.log("tasks", tasks);
   const handleSubmit = (e) => {
     e.preventDefault();
     const taskId = task.id;
-    console.log("/////////line 30", taskId);
+    console.log("///////line 30", taskId);
     dispatch(addSubTasks({ title, description, priority, dueDate, taskId }));
     setTitle("");
     setDescription("");
