@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Task, SubTask },
+  models: { User, Task },
 } = require("../server/db");
 
 /**
@@ -36,6 +36,7 @@ async function seed() {
 
   const tasks = await Promise.all([
     Task.create({
+      parentId: 1,
       userId: 1,
       title: "Do the dishes",
       description: "Wash the dishes and put them away",
@@ -45,6 +46,7 @@ async function seed() {
       isCompleted: false,
     }),
     Task.create({
+      parentId: 2,
       userId: 2,
       title: "walk the dog",
       description: "Take the dog for a walk",
@@ -54,6 +56,7 @@ async function seed() {
       isCompleted: false,
     }),
     Task.create({
+      parentId: 3,
       userId: 3,
       title: "work on capstone",
       description: "Work on capstone project",
@@ -65,31 +68,30 @@ async function seed() {
   ]);
 
   // Creating SubTasks
-
   const subTasks = await Promise.all([
-    SubTask.create({
-      taskId: 1,
-      title: "dry the dishes",
+    Task.create({
+      userId: 1,
+      parentId: 1, // Reference to the parent task ID
+      title: "Dry the dishes",
       description: "Dry the dishes and put them away",
-      scheduledTime: "2021-03-01 12:00:00",
       dueDate: "2021-03-01 12:00:00",
-      priority: "High",
+      priority: "Medium",
       isCompleted: false,
     }),
-    SubTask.create({
-      taskId: 2,
-      title: "feed the dog",
+    Task.create({
+      userId: 2,
+      parentId: 2, // Reference to the parent task ID
+      title: "Feed the dog",
       description: "Feed the dog",
-      scheduledTime: "2021-03-01 12:00:00",
       dueDate: "2021-03-01 12:00:00",
       priority: "High",
       isCompleted: false,
     }),
-    SubTask.create({
-      taskId: 3,
-      title: "create DB",
+    Task.create({
+      userId: 3,
+      parentId: 3, // Reference to the parent task ID
+      title: "Create DB",
       description: "Create the database for the project",
-      scheduledTime: "2021-03-01 12:00:00",
       dueDate: "2021-03-01 12:00:00",
       priority: "High",
       isCompleted: false,
