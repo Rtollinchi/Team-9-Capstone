@@ -27,7 +27,7 @@ const AddSubTask = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const taskId = task.id;
-    console.log("///////line 30",taskId);
+    console.log("/////////line 30", taskId);
     dispatch(addSubTasks({ title, description, priority, dueDate, taskId }));
     setTitle("");
     setDescription("");

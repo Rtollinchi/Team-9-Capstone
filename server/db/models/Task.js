@@ -18,6 +18,16 @@ const Task = db.define("task", {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   },
+  parentId: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    reference: {
+      model: "task",
+      key: "id",
+    },
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  },
   title: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -26,14 +36,11 @@ const Task = db.define("task", {
     type: Sequelize.TEXT,
     allowNull: true,
   },
-  scheduledTime: {
-    type: Sequelize.DATE,
-  },
   dueDate: {
     type: Sequelize.DATE,
   },
   priority: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM("low", "medium", "high"),
   },
   isCompleted: {
     type: Sequelize.BOOLEAN,
@@ -46,5 +53,21 @@ const Task = db.define("task", {
     type: Sequelize.DATE,
   },
 });
+
+Task.findTasksAndSubtasks = async function (userId) {
+  const allTasks = await Task.findAll({
+    where: {
+      userId: userId,
+      parentId: null,
+    },
+    include: [
+      {
+        model: Task,
+        as: "subtasks",
+      },
+    ],
+  });
+  return allTasks;
+};
 
 module.exports = Task;
