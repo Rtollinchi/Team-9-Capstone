@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 
+
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -13,15 +14,12 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h1>CHANGE MY NAME</h1>
+    <div className='navbar'>
+      <h1>Welcome!</h1>
       <nav>
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            <Link to="/profile">
-              <img src="user.png" />
-            </Link>
             <Link to="/home">
               <img src="home.png" />
             </Link>
@@ -33,6 +31,9 @@ const Navbar = () => {
             </Link>
             <Link to="/addSubTask">
               <img src="add-subtask.png" />
+            </Link>
+            <Link to="/profile">
+              <img src="user.png" />
             </Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               <img src="exit_480.png" />
