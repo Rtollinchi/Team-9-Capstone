@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/calendar">
               <img src="calendar.png" />
             </Link>
-            <Link to="/tasks/new">
+            <Link to="/newtasks">
               <img src="add.png" />
             </Link>
             <Link to="/addSubTask">

@@ -25,7 +25,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/tasks/new" element={<AddTask />} />
+          <Route path="/newtasks" element={<AddTask />} />
           <Route path="/addSubTask" element={<AddSubTask />} />
           <Route path="/calendar" element={<Calendar />} />
         </Routes>

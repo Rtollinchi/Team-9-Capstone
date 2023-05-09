@@ -14,7 +14,7 @@ const Home = () => {
   console.log("tasks", tasks);
 
   useEffect(() => {
-    dispatch(fetchTasks(currentUser.id));
+    dispatch(fetchTasks());
   }, []);
 
   return (

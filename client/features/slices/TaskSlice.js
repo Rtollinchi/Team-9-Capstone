@@ -8,10 +8,10 @@ import axios from "axios";
 /*
   THUNKS
 */
-export const fetchTasks = createAsyncThunk("fetchTasks", async (id) => {
+export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
   try {
-    console.log(id);
-    const { data } = await axios.get("/api/tasks", { params: { userId: id } });
+    axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
+    const { data } = await axios.get("/api/tasks");
     console.log(data);
     return data;
   } catch (err) {
