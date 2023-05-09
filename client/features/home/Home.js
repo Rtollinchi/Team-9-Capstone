@@ -14,7 +14,7 @@ const Home = () => {
   console.log("tasks", tasks);
 
   useEffect(() => {
-    dispatch(fetchTasks(currentUser.id));
+    dispatch(fetchTasks());
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const Home = () => {
       </span>
       <div className="scroll-box">
         <ul>
-          {tasks ? (
+          {tasks.length > 0 ? (
             tasks.map((task) => {
               return <li key={task.id}>{task.title}</li>;
             })

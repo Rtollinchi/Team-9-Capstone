@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import Navbar from '../features/navbar/Navbar';
-import AppRoutes from './AppRoutes';
-import Canvas from '../features/canvas/Canvas';
+import Navbar from "../features/navbar/Navbar";
+import AppRoutes from "./AppRoutes";
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <AppRoutes />
-      <Canvas />
     </div>
   );
 };
