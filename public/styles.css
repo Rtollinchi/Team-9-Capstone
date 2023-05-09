@@ -34,9 +34,13 @@ img {
 .datepicker {
   max-width: 400px;
 }
-/* .navbar {
-
-} */
+.navbar {
+  background-color: #e2e8f0;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
