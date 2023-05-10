@@ -4,36 +4,45 @@ import axios from "axios";
 /*
   CONSTANT VARIABLES
 */
-
+const TOKEN = "token";
 /*
   THUNKS
 */
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  try {
-    axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-    const { data } = await axios.get("/api/tasks");
-    console.log(data);
-    return data;
-  } catch (err) {
-    next(err);
-  }
+  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
+  // const token = window.localStorage.getItem(TOKEN);
+  const token = window.localStorage.getItem(TOKEN);
+  const { data } = await axios.get("/api/tasks", {
+    headers: {
+      authorization: token,
+    },
+  });
+  console.log("data", data);
+  return data;
+});
+
+export const fetchOptions = createAsyncThunk("fetchOptions", async () => {
+  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
+  // console.log("token", token);
+  const { data } = await axios.get("/api/tasks/options");
+  console.log("options", data);
+  return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
-  try {
-    const response = await axios.post("/api/tasks", props);
-    console.log(response.data);
-    return response.data;
-  } catch (err) {
-    next(err);
-  }
+  const response = await axios.post("/api/tasks", props);
+  console.log(response.data);
+  return response.data;
 });
 /*
   SLICE
 */
 export const taskSlice = createSlice({
   name: "tasks",
-  initialState: [],
+  initialState: {
+    tasks: [],
+    options: [],
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -41,18 +50,34 @@ export const taskSlice = createSlice({
         console.log("pending");
       })
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        return action.payload;
+        state.tasks = action.payload;
+      })
+      .addCase(fetchTasks.rejected, (state, action) => {
+        console.log("state", state);
+        console.log("rejected", action.payload);
       })
       .addCase(addTasks.pending, (state) => {
         console.log("pending");
       })
       .addCase(addTasks.fulfilled, (state, action) => {
-        state.push(action.payload);
+        state.tasks.push(action.payload);
         return state;
+      })
+      .addCase(addTasks.rejected, (state, action) => {
+        console.log("rejected", action.payload);
+      })
+      .addCase(fetchOptions.pending, (state) => {
+        console.log("pending");
+      })
+      .addCase(fetchOptions.fulfilled, (state, action) => {
+        state.options = action.payload;
+      })
+      .addCase(fetchOptions.rejected, (state, action) => {
+        console.log("rejected", action.payload);
       });
   },
 });
 
-export const selectTasks = (state) => state.tasks;
-
+export const selectTasks = (state) => state.tasks.tasks;
+export const selectOptions = (state) => state.tasks.options;
 export default taskSlice.reducer;
