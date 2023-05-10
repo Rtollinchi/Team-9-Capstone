@@ -3,11 +3,6 @@ const db = require("../db");
 const User = require("./User");
 
 const Task = db.define("task", {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
   userId: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -40,7 +35,7 @@ const Task = db.define("task", {
     type: Sequelize.DATE,
   },
   priority: {
-    type: Sequelize.ENUM("Low", "Medium", "High"),
+    type: Sequelize.STRING,
   },
   isCompleted: {
     type: Sequelize.BOOLEAN,

@@ -9,24 +9,17 @@ import axios from "axios";
   THUNKS
 */
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  try {
-    axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-    const { data } = await axios.get("/api/tasks");
-    console.log(data);
-    return data;
-  } catch (err) {
-    next(err);
-  }
+  axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
+  console.log("token", token);
+  const { data } = await axios.get("/api/tasks");
+  console.log("data", data);
+  return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
-  try {
-    const response = await axios.post("/api/tasks", props);
-    console.log(response.data);
-    return response.data;
-  } catch (err) {
-    next(err);
-  }
+  const response = await axios.post("/api/tasks", props);
+  console.log(response.data);
+  return response.data;
 });
 /*
   SLICE
@@ -43,12 +36,19 @@ export const taskSlice = createSlice({
       .addCase(fetchTasks.fulfilled, (state, action) => {
         return action.payload;
       })
+      .addCase(fetchTasks.rejected, (state, action) => {
+        console.log("state", state);
+        console.log("rejected", action.payload);
+      })
       .addCase(addTasks.pending, (state) => {
         console.log("pending");
       })
       .addCase(addTasks.fulfilled, (state, action) => {
         state.push(action.payload);
         return state;
+      })
+      .addCase(addTasks.rejected, (state, action) => {
+        console.log("rejected", action.payload);
       });
   },
 });

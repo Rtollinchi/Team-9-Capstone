@@ -7,7 +7,7 @@ import { selectTasks } from "../slices/TaskSlice";
  */
 const Home = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.auth.me);
+
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
   const currentDate = new Date().toLocaleDateString();
