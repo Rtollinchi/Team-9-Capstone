@@ -23,7 +23,7 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/newtasks" element={<AddTask />} />
           <Route path="/addSubTask" element={<AddSubTask />} />

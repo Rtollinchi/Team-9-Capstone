@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { selectOptions } from "../slices/TaskSlice";
 import { addTasks } from "../slices/TaskSlice";
-
+import { fetchOptions } from "../slices/TaskSlice";
 const AddTask = () => {
   const dispatch = useDispatch("");
 
+  //const [, set] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
+  const priorityOptions = useSelector(selectOptions);
   //using react datepicker to grab current date
   const [dueDate, setDueDate] = useState(new Date());
 
@@ -24,7 +26,10 @@ const AddTask = () => {
     setPriority("");
     setDueDate("");
   };
-
+  useEffect(() => {
+    dispatch(fetchOptions());
+  }, [dispatch]);
+  console.log("options", priorityOptions);
   return (
     <div>
       <h1>add task here</h1>
@@ -44,13 +49,16 @@ const AddTask = () => {
 
         <label htmlFor="priority">Priority:</label>
         <select
+          id="priority"
           name="priority"
           value={priority}
           onChange={(e) => setPriority(e.target.value)}
         >
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          {priorityOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
         <button type="submit">Submit</button>
       </form>

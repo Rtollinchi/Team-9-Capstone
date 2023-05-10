@@ -35,7 +35,7 @@ const Task = db.define("task", {
     type: Sequelize.DATE,
   },
   priority: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM("low", "medium", "high"),
   },
   isCompleted: {
     type: Sequelize.BOOLEAN,

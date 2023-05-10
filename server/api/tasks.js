@@ -13,6 +13,22 @@ router.get("/", requireToken, async (req, res, next) => {
     next(err);
   }
 });
+//grabs enum values for priority
+router.get("/options", async (req, res, next) => {
+  try {
+    //grabbing values of priority from model
+    const priorityValues = await Task.rawAttributes.priority.values;
+    //returns array of options
+    const priorityOptions = priorityValues.map((value) => ({
+      label: value.charAt(0).toUpperCase() + value.slice(1),
+      value,
+    }));
+    res.json(priorityOptions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "internal server error" });
+  }
+});
 //find one
 router.get("/:id", async (req, res, next) => {
   try {
