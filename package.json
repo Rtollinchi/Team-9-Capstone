@@ -20,6 +20,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@fullcalendar/core": "^6.1.7",
     "@fullcalendar/daygrid": "^6.1.6",
     "@fullcalendar/interaction": "^6.1.6",
     "@fullcalendar/react": "^6.1.6",
