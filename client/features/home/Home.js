@@ -11,12 +11,11 @@ const Home = () => {
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
   const currentDate = new Date().toLocaleDateString();
-  console.log("tasks", tasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
-  }, []);
-
+  }, [dispatch]);
+  console.log("tasks", tasks);
   return (
     <div>
       <span>
@@ -28,7 +27,7 @@ const Home = () => {
         <ul>
           {tasks.length > 0 ? (
             tasks.map((task) => {
-              return <li key={task.id}>{task.title}</li>;
+              return <li key={`${task.id}`}>{task.title}</li>;
             })
           ) : (
             <li>No Tasks</li>

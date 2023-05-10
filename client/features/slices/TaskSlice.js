@@ -4,14 +4,19 @@ import axios from "axios";
 /*
   CONSTANT VARIABLES
 */
-
+const TOKEN = "token";
 /*
   THUNKS
 */
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-  console.log("token", token);
-  const { data } = await axios.get("/api/tasks");
+  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
+  // const token = window.localStorage.getItem(TOKEN);
+  const token = window.localStorage.getItem(TOKEN);
+  const { data } = await axios.get("/api/tasks", {
+    headers: {
+      authorization: token,
+    },
+  });
   console.log("data", data);
   return data;
 });
@@ -45,7 +50,7 @@ export const taskSlice = createSlice({
         console.log("pending");
       })
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        return action.payload;
+        state.tasks = action.payload;
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         console.log("state", state);

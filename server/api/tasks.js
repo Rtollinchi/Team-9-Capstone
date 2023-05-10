@@ -5,7 +5,9 @@ const {
 const { requireToken } = require("./gatekeepingmiddleware");
 //find all belonging to user
 router.get("/", requireToken, async (req, res, next) => {
-  const userId = req.user.id;
+  const user = req.user;
+  console.log(user);
+  const userId = user.id;
   try {
     const tasks = await Task.findAll({ where: { userId } });
     res.json(tasks);
