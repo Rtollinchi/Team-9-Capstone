@@ -21,7 +21,7 @@ const AuthForm = ({ name, displayName }) => {
   };
 
   return (
-    <div>
+    <div className="bg-red-500">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="username">
