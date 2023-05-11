@@ -522,11 +522,11 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.bg-red-500 {
+/* .bg-red-500 {
   background-color: red;
-}
+} */
 
-body {
+/* body {
   font-family: sans-serif;
 }
 
@@ -552,18 +552,13 @@ form div {
   background-color: black;
   color: white;
 }
-
 .scroll-box {
   height: 200px;
-  /* set a fixed height for the scroll box */
   overflow: auto;
-  /* enable scrolling */
 }
-
 img {
   width: 30px;
 }
-
 .datepicker {
   max-width: 400px;
 }
@@ -574,4 +569,4 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+}  */
