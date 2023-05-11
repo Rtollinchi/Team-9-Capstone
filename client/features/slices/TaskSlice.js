@@ -9,29 +9,24 @@ const TOKEN = "token";
   THUNKS
 */
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-  // const token = window.localStorage.getItem(TOKEN);
   const token = window.localStorage.getItem(TOKEN);
   const { data } = await axios.get("/api/tasks", {
     headers: {
       authorization: token,
     },
   });
-  console.log("data", data);
+
   return data;
 });
 
 export const fetchOptions = createAsyncThunk("fetchOptions", async () => {
-  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-  // console.log("token", token);
   const { data } = await axios.get("/api/tasks/options");
-  console.log("options", data);
   return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
   const response = await axios.post("/api/tasks", props);
-  console.log(response.data);
+
   return response.data;
 });
 /*
@@ -53,7 +48,6 @@ export const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(fetchTasks.rejected, (state, action) => {
-        console.log("state", state);
         console.log("rejected", action.payload);
       })
       .addCase(addTasks.pending, (state) => {
