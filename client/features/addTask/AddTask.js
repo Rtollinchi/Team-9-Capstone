@@ -25,6 +25,7 @@ const AddTask = () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
+  const topLevelTasks = tasks.filter((task) => !task.parentId);
 
   const handleSubmit = async (e) => {
     await e.preventDefault();
@@ -57,7 +58,7 @@ const AddTask = () => {
           onChange={(e) => setParentTaskId(e.target.value)}
         >
           <option>Not a subtask</option>
-          {tasks.map((task) => (
+          {topLevelTasks.map((task) => (
             <option key={task.id} value={task.id}>
               {task.title}
             </option>
