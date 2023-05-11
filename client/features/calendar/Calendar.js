@@ -4,15 +4,14 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTasks, fetchTasks } from '../slices/TaskSlice'
+import { selectTasks, fetchTasks } from "../slices/TaskSlice";
 
 const Calendar = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTasks());
-  }, [dispatch])
+  }, [dispatch]);
 
   const tasks = useSelector(selectTasks);
 
@@ -20,9 +19,9 @@ const Calendar = () => {
 
   // console.log(tasks)
 
-  let calendarEvents = tasks.map(task => {
+  let calendarEvents = tasks.map((task) => {
     //  console.log(`These are the calendar events ${task.title} due on ${task.dueDate}`)
-    return { title: task.title, date: task.dueDate }
+    return { title: task.title, date: task.dueDate };
   });
 
   // console.log(calendarEvents)
@@ -41,7 +40,7 @@ const Calendar = () => {
         events={calendarEvents}
         selectable={true}
         editable={true}
-        themeSystem='mint'
+        themeSystem="mint"
       />
     </div>
   );

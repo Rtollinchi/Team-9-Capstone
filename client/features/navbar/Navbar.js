@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 
-
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <h1>Welcome!</h1>
       <nav>
         {isLoggedIn ? (
@@ -29,9 +28,9 @@ const Navbar = () => {
             <Link to="/newtasks">
               <img src="add.png" />
             </Link>
-            <Link to="/addSubTask">
+            {/* <Link to="/addSubTask">
               <img src="add-subtask.png" />
-            </Link>
+            </Link> */}
             <Link to="/profile">
               <img src="user.png" />
             </Link>

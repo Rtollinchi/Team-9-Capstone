@@ -13,7 +13,7 @@ const AddTask = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Low");
-  const [parentId, setParentId] = useState("");
+  const [parentTaskId, setParentTaskId] = useState("");
   const priorityOptions = useSelector(selectOptions);
   //using react datepicker to grab current date
   const [dueDate, setDueDate] = useState(new Date());
@@ -28,13 +28,13 @@ const AddTask = () => {
 
   const handleSubmit = async (e) => {
     await e.preventDefault();
-    if (!parentId) {
-      const parentTaskId = parseInt(parentId);
-      dispatch(
-        addTasks({ title, description, priority, userId, parentTaskId })
-      );
-    } else {
+    console.log(parentTaskId);
+    if (!parentTaskId) {
       dispatch(addTasks({ title, description, priority, userId }));
+    } else {
+      const parentId = parseInt(parentTaskId);
+      console.log(parentId);
+      dispatch(addTasks({ title, description, priority, userId, parentId }));
     }
     setTitle("");
     setDescription("");
@@ -54,7 +54,7 @@ const AddTask = () => {
           id="Task List"
           name="Task List"
           value={tasks.id}
-          onChange={(e) => setParentId(e.target.value)}
+          onChange={(e) => setParentTaskId(e.target.value)}
         >
           <option>Not a subtask</option>
           {tasks.map((task) => (
