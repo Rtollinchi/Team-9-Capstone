@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-red-500 {
+/* .bg-red-500 {
   background-color: red;
-}
-body {
+} */
+
+/* body {
   font-family: sans-serif;
 }
 
@@ -32,8 +33,8 @@ form div {
   color: white;
 }
 .scroll-box {
-  height: 200px; /* set a fixed height for the scroll box */
-  overflow: auto; /* enable scrolling */
+  height: 200px;
+  overflow: auto;
 }
 img {
   width: 30px;
@@ -48,4 +49,4 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+}  */
