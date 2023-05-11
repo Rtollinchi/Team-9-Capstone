@@ -17,7 +17,7 @@ export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
       authorization: token,
     },
   });
-  console.log("data", data);
+  // console.log("data", data);
   return data;
 });
 
@@ -25,13 +25,13 @@ export const fetchOptions = createAsyncThunk("fetchOptions", async () => {
   // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
   // console.log("token", token);
   const { data } = await axios.get("/api/tasks/options");
-  console.log("options", data);
+  // console.log("options", data);
   return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
   const response = await axios.post("/api/tasks", props);
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 });
 /*
