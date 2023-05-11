@@ -31,7 +31,6 @@ const AddTask = () => {
 
   const handleSubmit = async (e) => {
     await e.preventDefault();
-<<<<<<< HEAD
     console.log(parentTaskId);
     if (!parentTaskId) {
       dispatch(addTasks({ title, description, priority, userId }));
@@ -44,13 +43,6 @@ const AddTask = () => {
     setDescription("");
     setPriority("Low");
     setDueDate("");
-=======
-    dispatch(addTasks({ title, description, priority, userId, dueDate }));
-    setTitle("");
-    setDescription("");
-    setPriority("");
-    setDueDate('');
->>>>>>> origin
   };
   useEffect(() => {
     dispatch(fetchOptions());
@@ -60,7 +52,6 @@ const AddTask = () => {
     <div>
       <h1>Add task here</h1>
       <form id="task-form" onSubmit={handleSubmit}>
-<<<<<<< HEAD
         <label htmlFor="Task List">Add as a subtask:</label>
         <select
           id="Task List"
@@ -75,23 +66,24 @@ const AddTask = () => {
             </option>
           ))}
         </select>
-=======
 
-        <label htmlFor='date'>Date <small><em>(YYYY-MM-DD):</em></small></label>
-        <input
-          name='date'
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-        />
-
->>>>>>> origin
         <label htmlFor="title">Title:</label>
         <input
           name="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-
+        <label htmlFor="date">
+          Date{" "}
+          <small>
+            <em>(YYYY-MM-DD):</em>
+          </small>
+        </label>
+        <input
+          name="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+        />
         <label htmlFor="description">Description:</label>
         <input
           name="description"
@@ -114,8 +106,7 @@ const AddTask = () => {
         </select>
 
         <button type="submit">Submit</button>
-
-      </form> 
+      </form>
     </div>
   );
 };

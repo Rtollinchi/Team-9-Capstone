@@ -15,30 +15,16 @@ export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
       authorization: token,
     },
   });
-<<<<<<< HEAD
-
-=======
-  // console.log("data", data);
->>>>>>> origin
   return data;
 });
 
 export const fetchOptions = createAsyncThunk("fetchOptions", async () => {
   const { data } = await axios.get("/api/tasks/options");
-<<<<<<< HEAD
-=======
-  // console.log("options", data);
->>>>>>> origin
   return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
   const response = await axios.post("/api/tasks", props);
-<<<<<<< HEAD
-
-=======
-  // console.log(response.data);
->>>>>>> origin
   return response.data;
 });
 export const updateTask = createAsyncThunk(
