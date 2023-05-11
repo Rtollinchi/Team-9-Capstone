@@ -32,7 +32,8 @@ const Task = db.define("task", {
     allowNull: true,
   },
   dueDate: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
+    allowNull: false,
   },
   priority: {
     type: Sequelize.ENUM("Low", "Medium", "High"),
