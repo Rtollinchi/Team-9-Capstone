@@ -25,7 +25,9 @@ const AddTask = () => {
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
-  const topLevelTasks = tasks.filter((task) => !task.parentId);
+  const topLevelTasks = tasks.filter(
+    (task) => !task.parentId && !task.isCompleted
+  );
 
   const handleSubmit = async (e) => {
     await e.preventDefault();

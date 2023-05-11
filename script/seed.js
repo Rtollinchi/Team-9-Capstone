@@ -109,7 +109,6 @@ async function seed() {
       isCompleted: false,
     }),
     Task.create({
-      parentId: 2,
       userId: 2,
       title: "walk the dog",
       description: "Take the dog for a walk",
@@ -119,7 +118,6 @@ async function seed() {
       isCompleted: false,
     }),
     Task.create({
-      parentId: 3,
       userId: 3,
       title: "work on capstone",
       description: "Work on capstone project",
@@ -144,7 +142,7 @@ async function seed() {
     }),
     Task.create({
       userId: 2,
-      parentId: 2, // Reference to the parent task ID
+
       title: "Feed the dog",
       description: "Feed the dog",
       dueDate: "2023-05-20 12:00:00",
@@ -153,7 +151,7 @@ async function seed() {
     }),
     Task.create({
       userId: 3,
-      parentId: 3, // Reference to the parent task ID
+
       title: "Create DB",
       description: "Create the database for the project",
       dueDate: "2023-05-20 12:00:00",

@@ -29,6 +29,23 @@ export const addTasks = createAsyncThunk("addTasks", async (props) => {
 
   return response.data;
 });
+export const updateTask = createAsyncThunk(
+  "updateTask",
+  async (updatedTask) => {
+    const token = window.localStorage.getItem(TOKEN);
+    console.log(updatedTask);
+    const response = await axios.put(
+      `/api/tasks/${updatedTask.id}`,
+      updatedTask,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    return response.data;
+  }
+);
 /*
   SLICE
 */
@@ -68,6 +85,18 @@ export const taskSlice = createSlice({
       })
       .addCase(fetchOptions.rejected, (state, action) => {
         console.log("rejected", action.payload);
+      })
+      .addCase(updateTask.pending, (state) => {
+        console.log("pending");
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        const updatedTask = action.payload;
+        const index = state.tasks.findIndex(
+          (task) => task.id === updatedTask.id
+        );
+        if (index !== -1) {
+          state.tasks[index] = updatedTask;
+        }
       });
   },
 });

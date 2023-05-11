@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
-import { subTaskSlice } from "../slices/SubTaskSlice";
+// import { subTaskSlice } from "../slices/SubTaskSlice";
+import { updateTask } from "../slices/TaskSlice";
 /**
  * COMPONENT
  */
@@ -12,10 +13,19 @@ const Home = () => {
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
   const currentDate = new Date().toLocaleDateString();
-
-  const topLevelTasks = tasks.filter((task) => !task.parentId);
+  const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
+  const topLevelTasks = tasks.filter(
+    (task) => !task.parentId && !task.isCompleted
+  );
   const getSubtasks = (taskId) => {
-    return tasks.filter((task) => task.parentId === taskId);
+    return tasks.filter(
+      (task) => task.parentId === taskId && !task.isCompleted
+    );
+  };
+  const handleUpdate = (taskId) => {
+    const taskToUpdate = tasks.find((task) => task.id === taskId);
+    const updatedTask = { ...taskToUpdate, isCompleted: true };
+    dispatch(updateTask(updatedTask));
   };
   useEffect(() => {
     dispatch(fetchTasks());
@@ -26,30 +36,38 @@ const Home = () => {
       <span>
         <h3>Welcome, {username}</h3>
         <h3>{currentDate}</h3>
-        <h3>Total Tasks Completed: </h3>
+        <h3>Total Tasks Completed: {totalTasksCompleted.length} </h3>
       </span>
-      {/* <div className="scroll-box">
-        <ul>
-          {tasks.length > 0 ? (
-            tasks.map((task) => {
-              return <li key={`${task.id}`}>{task.title}</li>;
-            })
-          ) : (
-            <li>No Tasks</li>
-          )}
-        </ul>
-        <p>Scroll box content goes here</p>
-      </div> */}
-      <div className="scroll-box">
+      <div className="scroll-box rounded-md border-2 border-black">
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => {
             const subtasks = getSubtasks(task.id);
             return (
-              <ul key={task.id}>
-                <li>{task.title}</li>
+              <ul key={task.id} className="list-decimal">
+                <li>
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
+                    checked={task.isCompleted}
+                    onChange={() => {
+                      handleUpdate(task.id);
+                    }}
+                  />
+                  {task.title}
+                </li>
                 {subtasks.length > 0 &&
                   subtasks.map((subtask) => (
-                    <li key={subtask.id}>{subtask.title}</li>
+                    <li key={subtask.id} className="list-none">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
+                        checked={task.isCompleted}
+                        onChange={() => {
+                          handleUpdate(task.id);
+                        }}
+                      />
+                      {subtask.title}
+                    </li>
                   ))}
               </ul>
             );
