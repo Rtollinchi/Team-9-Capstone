@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-blue-600">
+    <div>
       <h1>Welcome!</h1>
       <nav>
         {isLoggedIn ? (

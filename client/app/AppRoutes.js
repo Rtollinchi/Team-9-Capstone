@@ -7,6 +7,8 @@ import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
 // import AddSubTask from "../features/addSubTask/AddSubTask";
 import Calendar from "../features/calendar/Calendar";
+import SignUpForm from "../features/auth/SignUpForm";
+import Navbar from "../features/navbar/Navbar";
 /**
  * COMPONENT
  */
@@ -20,7 +22,7 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex items-center justify-center bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport">
       {isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
@@ -41,7 +43,7 @@ const AppRoutes = () => {
           />
           <Route
             path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
+            element={<SignUpForm name="signup" displayName="Sign Up" />}
           />
         </Routes>
       )}

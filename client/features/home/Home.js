@@ -32,24 +32,24 @@ const Home = () => {
   }, [dispatch]);
   console.log("tasks", tasks);
   return (
-    <div className="flex self-center">
+    <div className="flex items-center justify-center h-screen-viewport w-screen-viewport">
       <span>
-        <h3 className="self-center">Welcome, {username}</h3>
-        <h3 className="self-center">{currentDate}</h3>
+        <h1 className="self-center">Welcome, {username}</h1>
+        <h2 className="self-center">{currentDate}</h2>
         <h3 className="self-center">
           Total Tasks Completed: {totalTasksCompleted.length}{" "}
         </h3>
       </span>
-      <div className="self-center">
+      <div className="border border-gray-600 rounded p-4 max-h-64 shadow-sm overflow-auto w-1/2 scrollbar-hide">
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => {
             const subtasks = getSubtasks(task.id);
             return (
-              <ul key={task.id} className="list-decimal">
+              <ul key={task.id} className="list-none">
                 <li>
                   <input
                     type="checkbox"
-                    className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
+                    className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-600 rounded shadow-sm transition duration-150 ease-in-out bg-gray-200"
                     checked={task.isCompleted}
                     onChange={() => {
                       handleUpdate(task.id);
