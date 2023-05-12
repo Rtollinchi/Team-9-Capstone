@@ -68,8 +68,17 @@ const AuthForm = ({ name, displayName }) => {
             >
               {displayName}
             </button>
+<<<<<<< HEAD
             <button className="text-blue-500 hover:underline">
               Don't have an account? <Link to="/signup"> Sign up here! </Link>
+=======
+            <button className="text-black">
+              Don't have an account?
+              <Link to="/signup" className="hover:underline text-blue-500">
+                {" "}
+                Sign up here!{" "}
+              </Link>
+>>>>>>> 4b392c02fffdaf7405967b60ab374736c5dd8028
             </button>
           </div>
           {error && <div className="text-red-500 mt-2"> {error} </div>}

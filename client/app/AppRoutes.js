@@ -9,7 +9,9 @@ import AddTask from "../features/addTask/AddTask";
 import Calendar from "../features/calendar/Calendar";
 import Profile from "../features/ProfileImage/profile";
 import SignUpForm from "../features/auth/SignUpForm";
-import Navbar from "../features/navbar/Navbar";
+import LoggedInLayout from "./layouts/LoggedInLayout";
+import LoggedOutLayout from '../app/layouts/LoggedOutLayout';
+
 /**
  * COMPONENT
  */
@@ -25,29 +27,33 @@ const AppRoutes = () => {
   return (
     <div className="flex items-center justify-center bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport">
       {isLoggedIn ? (
-        <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/newtasks" element={<AddTask />} />
-          {/* <Route path="/addSubTask" element={<AddSubTask />} /> */}
-          <Route path="/calendar" element={<Calendar />} />
-        </Routes>
+       <LoggedInLayout>
+          <Routes>
+            <Route path="/*" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/newtasks" element={<AddTask />} />
+            {/* <Route path="/addSubTask" element={<AddSubTask />} /> */}
+            <Route path="/calendar" element={<Calendar />} />
+          </Routes>
+        </LoggedInLayout>
+
       ) : (
-        <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/signup"
-            element={<SignUpForm name="signup" displayName="Sign Up" />}
-          />
-        </Routes>
+        <LoggedOutLayout>
+          <Routes>
+            <Route
+              path="/*"
+              element={<AuthForm name="login" displayName="Login" />}
+            />
+            <Route
+              path="/login"
+              element={<AuthForm name="login" displayName="Login" />}
+            />
+            <Route
+              path="/signup"
+              element={<SignUpForm name="signup" displayName="Sign Up" />}
+            />
+          </Routes>
+        </LoggedOutLayout>
       )}
     </div>
   );
