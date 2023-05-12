@@ -32,13 +32,15 @@ const Home = () => {
   }, [dispatch]);
   console.log("tasks", tasks);
   return (
-    <div className="border-x-2">
+    <div className="flex self-center">
       <span>
-        <h3>Welcome, {username}</h3>
-        <h3>{currentDate}</h3>
-        <h3>Total Tasks Completed: {totalTasksCompleted.length} </h3>
+        <h3 className="self-center">Welcome, {username}</h3>
+        <h3 className="self-center">{currentDate}</h3>
+        <h3 className="self-center">
+          Total Tasks Completed: {totalTasksCompleted.length}{" "}
+        </h3>
       </span>
-      <div className="scroll-box rounded-md border-2 border-black">
+      <div className="self-center">
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => {
             const subtasks = getSubtasks(task.id);
