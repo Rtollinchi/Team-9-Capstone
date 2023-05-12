@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setProfileImage } from "../slices/profileSlice";
+import { setProfileImageURL } from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);

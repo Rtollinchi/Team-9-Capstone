@@ -1,5 +1,3 @@
-// profileSlice.js
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -16,8 +14,11 @@ const profileSlice = createSlice({
   },
 });
 
+// Export the reducer and actions
 export const { setProfileImage } = profileSlice.actions;
 
+// Define the selector to retrieve the profile image
 export const selectProfileImage = (state) => state.profile.profileImage;
 
+// Export the profile reducer
 export default profileSlice.reducer;
