@@ -7,6 +7,7 @@ import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
 // import AddSubTask from "../features/addSubTask/AddSubTask";
 import Calendar from "../features/calendar/Calendar";
+import Profile from "../features/ProfileImage/profile";
 /**
  * COMPONENT
  */
@@ -25,6 +26,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/newtasks" element={<AddTask />} />
           {/* <Route path="/addSubTask" element={<AddSubTask />} /> */}
           <Route path="/calendar" element={<Calendar />} />
