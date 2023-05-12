@@ -7,6 +7,8 @@ import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
 import AddSubTask from "../features/addSubTask/AddSubTask";
 import Calendar from "../features/calendar/Calendar";
+import SignUpForm from "../features/auth/SignUpForm";
+import Navbar from "../features/navbar/Navbar";
 /**
  * COMPONENT
  */
@@ -41,7 +43,7 @@ const AppRoutes = () => {
           />
           <Route
             path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
+            element={<SignUpForm name="signup" displayName="Sign Up" />}
           />
         </Routes>
       )}
