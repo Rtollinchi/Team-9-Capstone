@@ -32,7 +32,7 @@ const Home = () => {
   }, [dispatch]);
   console.log("tasks", tasks);
   return (
-    <div className="flex items-center justify-center h-screen-viewport w-screen-viewport">
+    <div className="flex items-center justify-center h-screen-viewport w-screen-viewport scrollbar-hide column">
       <span>
         <h1 className="self-center">Welcome, {username}</h1>
         <h2 className="self-center">{currentDate}</h2>
@@ -40,26 +40,32 @@ const Home = () => {
           Total Tasks Completed: {totalTasksCompleted.length}{" "}
         </h3>
       </span>
-      <div className="border border-gray-600 rounded p-4 max-h-64 shadow-sm overflow-auto w-1/2 scrollbar-hide">
+      <div
+        className="content-center rounded p-4 max-h-80 overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
+        style={{ boxShadow: "0px 0px 25px rgba(0, 0, 0, 0.5)" }}
+      >
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => {
             const subtasks = getSubtasks(task.id);
             return (
-              <ul key={task.id} className="list-none">
-                <li>
+              <ul key={task.id} className="list-none my-2 p-1 text-center ">
+                <li className="text-4xl shadow-lg rounded-full flex items-center justify-center">
                   <input
                     type="checkbox"
-                    className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-600 rounded shadow-sm transition duration-150 ease-in-out bg-gray-200"
+                    className="form-checkbox h-4 w-4 rounded-full bg-gray-200 m-4"
                     checked={task.isCompleted}
                     onChange={() => {
                       handleUpdate(task.id);
                     }}
                   />
-                  {task.title}
+                  <span className="flex-1">{task.title}</span>
                 </li>
                 {subtasks.length > 0 &&
                   subtasks.map((subtask) => (
-                    <li key={subtask.id} className="list-none">
+                    <li
+                      key={subtask.id}
+                      className="list-none text-center indent-2"
+                    >
                       <input
                         type="checkbox"
                         className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
@@ -75,7 +81,7 @@ const Home = () => {
             );
           })
         ) : (
-          <p>No tasks</p>
+          <p className="text-center">No tasks</p>
         )}
       </div>
     </div>
