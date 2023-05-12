@@ -7,6 +7,7 @@ import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
 // import AddSubTask from "../features/addSubTask/AddSubTask";
 import Calendar from "../features/calendar/Calendar";
+import Profile from "../features/ProfileImage/profile";
 import SignUpForm from "../features/auth/SignUpForm";
 import LoggedInLayout from "./layouts/LoggedInLayout";
 import LoggedOutLayout from '../app/layouts/LoggedOutLayout';
@@ -26,7 +27,7 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <LoggedInLayout>
+       <LoggedInLayout>
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -35,6 +36,7 @@ const AppRoutes = () => {
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </LoggedInLayout>
+
       ) : (
         <LoggedOutLayout>
           <Routes>
