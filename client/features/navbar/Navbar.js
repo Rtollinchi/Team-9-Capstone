@@ -13,29 +13,24 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome!</h1>
+    <div className="flex flex-col items-center justify-between h-full py-4 bg-gray-50"> {/* Added classes for flex layout and padding */}
       <nav>
         {isLoggedIn ? (
           <div>
-            {/* The navbar will show these links after you log in */}
             <Link to="/home">
-              <img src="home.png" />
+              <img className="w-20 h-20 mb-10" src="home.png" /> {/* Increased size and added bottom margin */}
             </Link>
             <Link to="/calendar">
-              <img src="calendar.png" />
+              <img className="w-20 h-20 mb-10" src="calendar.png" /> {/* Increased size and added bottom margin */}
             </Link>
             <Link to="/newtasks">
-              <img src="add.png" />
+              <img className="w-20 h-20 mb-10" src="add.png" /> {/* Increased size and added bottom margin */}
             </Link>
-            {/* <Link to="/addSubTask">
-              <img src="add-subtask.png" />
-            </Link> */}
             <Link to="/profile">
-              <img src="user.png" />
+              <img className="w-20 h-20 mb-10" src="user.png" /> {/* Increased size and added bottom margin */}
             </Link>
             <button type="button" onClick={logoutAndRedirectHome}>
-              <img src="exit_480.png" />
+              <img className="w-20 h-20 mb-10" src="exit_480.png" /> {/* Increased size and added bottom margin */}
             </button>
           </div>
         ) : (
@@ -46,7 +41,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-      <hr />
     </div>
   );
 };

@@ -29,7 +29,11 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
             {displayName}
           </h2>
         </div>
-        <form className="mt-8 space-y-6 border border-gray-400 rounded p-4" onSubmit={handleSubmit} name={name}>
+        <form
+          className="mt-8 space-y-6 border border-gray-400 rounded p-4"
+          onSubmit={handleSubmit}
+          name={name}
+        >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -52,7 +56,7 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email@mail.com"
               />
             </div>
@@ -77,8 +81,8 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
             >
               {displayName}
             </button>
-            <button className="text-blue-500 hover:underline">
-              Already have an account? <Link to="/login"> Login here </Link>
+            <button className="text-black">
+              Already have an account? <Link to="/login" className="text-blue-500 hover:underline"> Login here </Link>
             </button>
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}

@@ -28,7 +28,11 @@ const AuthForm = ({ name, displayName }) => {
             {displayName}
           </h2>
         </div>
-        <form className="mt-8 space-y-6 border border-gray-400 rounded p-4" onSubmit={handleSubmit} name={name}>
+        <form
+          className="mt-8 space-y-6 border border-gray-400 rounded p-4"
+          onSubmit={handleSubmit}
+          name={name}
+        >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -64,16 +68,15 @@ const AuthForm = ({ name, displayName }) => {
             >
               {displayName}
             </button>
-            <button className="text-blue-500 hover:underline">
-        Don't have an account? <Link to="/signup"> Sign up here! </Link>
-      </button>
+            <button className="text-black">
+              Don't have an account?
+              <Link to="/signup" className="hover:underline text-blue-500">
+                {" "}
+                Sign up here!{" "}
+              </Link>
+            </button>
           </div>
-          {error && (
-            <div className="text-red-500 mt-2">
-              {" "}
-              {error}{" "}
-            </div>
-          )}
+          {error && <div className="text-red-500 mt-2"> {error} </div>}
         </form>
       </div>
     </div>
