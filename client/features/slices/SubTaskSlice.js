@@ -5,7 +5,7 @@ export const fetchSubTasks = createAsyncThunk("fetchSubTasks", async (id) => {
   try {
     console.log(id);
     const { data } = await axios.get("/api/subtasks", {
-      params: { taskId: id },
+      params: { parentId: id },
     });
     console.log(data);
     return data;

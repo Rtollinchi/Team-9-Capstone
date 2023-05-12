@@ -28,9 +28,9 @@ const Navbar = () => {
             <Link to="/newtasks">
               <img src="add.png" />
             </Link>
-            <Link to="/addSubTask">
+            {/* <Link to="/addSubTask">
               <img src="add-subtask.png" />
-            </Link>
+            </Link> */}
             <Link to="/profile">
               <img src="user.png" />
             </Link>

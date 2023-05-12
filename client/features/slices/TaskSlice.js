@@ -9,31 +9,41 @@ const TOKEN = "token";
   THUNKS
 */
 export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-  // const token = window.localStorage.getItem(TOKEN);
   const token = window.localStorage.getItem(TOKEN);
   const { data } = await axios.get("/api/tasks", {
     headers: {
       authorization: token,
     },
   });
-  console.log("data", data);
   return data;
 });
 
 export const fetchOptions = createAsyncThunk("fetchOptions", async () => {
-  // axios.get("api/tasks", { headers: { Authorization: `Bearer ${token}` } });
-  // console.log("token", token);
   const { data } = await axios.get("/api/tasks/options");
-  console.log("options", data);
   return data;
 });
 
 export const addTasks = createAsyncThunk("addTasks", async (props) => {
   const response = await axios.post("/api/tasks", props);
-  console.log(response.data);
   return response.data;
 });
+export const updateTask = createAsyncThunk(
+  "updateTask",
+  async (updatedTask) => {
+    const token = window.localStorage.getItem(TOKEN);
+    console.log(updatedTask);
+    const response = await axios.put(
+      `/api/tasks/${updatedTask.id}`,
+      updatedTask,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    return response.data;
+  }
+);
 /*
   SLICE
 */
@@ -53,7 +63,6 @@ export const taskSlice = createSlice({
         state.tasks = action.payload;
       })
       .addCase(fetchTasks.rejected, (state, action) => {
-        console.log("state", state);
         console.log("rejected", action.payload);
       })
       .addCase(addTasks.pending, (state) => {
@@ -74,6 +83,18 @@ export const taskSlice = createSlice({
       })
       .addCase(fetchOptions.rejected, (state, action) => {
         console.log("rejected", action.payload);
+      })
+      .addCase(updateTask.pending, (state) => {
+        console.log("pending");
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        const updatedTask = action.payload;
+        const index = state.tasks.findIndex(
+          (task) => task.id === updatedTask.id
+        );
+        if (index !== -1) {
+          state.tasks[index] = updatedTask;
+        }
       });
   },
 });
