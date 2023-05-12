@@ -33,16 +33,18 @@ const AddTask = () => {
     await e.preventDefault();
     console.log(parentTaskId);
     if (!parentTaskId) {
-      dispatch(addTasks({ title, description, priority, userId }));
+      dispatch(addTasks({ title, description, priority, userId, dueDate }));
     } else {
       const parentId = parseInt(parentTaskId);
       console.log(parentId);
-      dispatch(addTasks({ title, description, priority, userId, parentId }));
+      dispatch(
+        addTasks({ title, description, priority, userId, parentId, dueDate })
+      );
     }
     setTitle("");
     setDescription("");
     setPriority("Low");
-    setDueDate("");
+    setDueDate(new Date());
   };
   useEffect(() => {
     dispatch(fetchOptions());

@@ -32,7 +32,7 @@ const Home = () => {
   }, [dispatch]);
   console.log("tasks", tasks);
   return (
-    <div>
+    <div className="border-x-2">
       <span>
         <h3>Welcome, {username}</h3>
         <h3>{currentDate}</h3>
