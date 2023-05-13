@@ -4,6 +4,7 @@ import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
 import { updateTask } from "../slices/TaskSlice";
+import profileSlice from "../slices/profileSlice";
 /**
  * COMPONENT
  */
@@ -34,15 +35,22 @@ const Home = () => {
 
   return (
     <div className="flex flex-col h-screen w-screen">
-      <div className="self-center">
-        <h1 className="text-4xl">Welcome, {username}</h1>
-        <h2 className="text-4xl">{currentDate}</h2>
-        <h3 className="text-4xl">
+      <div className="flex">
+        <div className="grid grid-flow-col  justify-around w-screen">
+          <div>
+            <h1 className="text-4xl">Image Placholder</h1>
+            <h1 className="text-4xl">Welcome, {username}</h1>
+          </div>
+          {/* <img src={profileImg} /> */}
+          <h2 className="text-4xl">{currentDate}</h2>
+        </div>
+
+        <h3 className="text-4xl self-center">
           Total Tasks Completed: {totalTasksCompleted.length}{" "}
         </h3>
       </div>
       <div
-        className="content-center  self-center rounded p-4 max-h-80  scrollbar-hide overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
+        className="content-center self-center rounded p-4 max-h-80  scrollbar-hide overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
         style={{ boxShadow: "0px 0px 25px rgba(0, 0, 0, 0.5)" }}
       >
         {topLevelTasks.length > 0 ? (
