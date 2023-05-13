@@ -33,17 +33,16 @@ const Home = () => {
   console.log("tasks", tasks);
 
   return (
-<<<<<<< HEAD
-    <div className="flex items-center justify-center h-screen-viewport w-screen-viewport scrollbar-hide column">
-      <span>
-        <h1 className="self-center">Welcome, {username}</h1>
-        <h2 className="self-center">{currentDate}</h2>
-        <h3 className="self-center">
+    <div className="flex flex-col h-screen w-screen">
+      <div className="self-center">
+        <h1 className="text-4xl">Welcome, {username}</h1>
+        <h2 className="text-4xl">{currentDate}</h2>
+        <h3 className="text-4xl">
           Total Tasks Completed: {totalTasksCompleted.length}{" "}
         </h3>
-      </span>
+      </div>
       <div
-        className="content-center rounded p-4 max-h-80 overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
+        className="content-center  self-center rounded p-4 max-h-80  scrollbar-hide overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
         style={{ boxShadow: "0px 0px 25px rgba(0, 0, 0, 0.5)" }}
       >
         {topLevelTasks.length > 0 ? (
@@ -85,55 +84,6 @@ const Home = () => {
         ) : (
           <p className="text-center">No tasks</p>
         )}
-=======
-    <div className="min-h-screen flex flex-col items-start justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div className="w-full space-y-8 p-4">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Welcome, {username}
-          </h2>
-          <h3 className="text-center text-lg text-gray-700">{currentDate}</h3>
-          <h3 className="text-center text-lg text-gray-700">Total Tasks Completed: {totalTasksCompleted.length}</h3>
-        </div>
-        <div className="rounded-md shadow-sm border border-gray-400 p-4">
-          {topLevelTasks.length > 0 ? (
-            topLevelTasks.map((task) => {
-              const subtasks = getSubtasks(task.id);
-              return (
-                <ul key={task.id} className="list-decimal pl-5 space-y-2">
-                  <li className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
-                      checked={task.isCompleted}
-                      onChange={() => {
-                        handleUpdate(task.id);
-                      }}
-                    />
-                    <span className="text-gray-700">{task.title}</span>
-                  </li>
-                  {subtasks.length > 0 &&
-                    subtasks.map((subtask) => (
-                      <li key={subtask.id} className="list-none flex items-center space-x-2 ml-5">
-                        <input
-                          type="checkbox"
-                          className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
-                          checked={task.isCompleted}
-                          onChange={() => {
-                            handleUpdate(task.id);
-                          }}
-                        />
-                        <span className="text-gray-700">{subtask.title}</span>
-                      </li>
-                    ))}
-                </ul>
-              );
-            })
-          ) : (
-            <p className="text-gray-700">No tasks</p>
-          )}
-        </div>
->>>>>>> 4b392c02fffdaf7405967b60ab374736c5dd8028
       </div>
     </div>
   );
