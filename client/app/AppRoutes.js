@@ -10,7 +10,7 @@ import Calendar from "../features/calendar/Calendar";
 import Profile from "../features/ProfileImage/profile";
 import SignUpForm from "../features/auth/SignUpForm";
 import LoggedInLayout from "./layouts/LoggedInLayout";
-import LoggedOutLayout from '../app/layouts/LoggedOutLayout';
+import LoggedOutLayout from "../app/layouts/LoggedOutLayout";
 
 /**
  * COMPONENT
@@ -25,9 +25,9 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center">
       {isLoggedIn ? (
-       <LoggedInLayout>
+        <LoggedInLayout>
           <Routes>
             <Route path="/*" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -36,7 +36,6 @@ const AppRoutes = () => {
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </LoggedInLayout>
-
       ) : (
         <LoggedOutLayout>
           <Routes>
