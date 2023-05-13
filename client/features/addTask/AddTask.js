@@ -107,7 +107,12 @@ const AddTask = () => {
           ))}
         </select>
 
-        <button type="submit">Submit</button>
+        <button
+          className="bg-gradient-to-r from-gray-500 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-white font-bold py-2 px-4 rounded"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
