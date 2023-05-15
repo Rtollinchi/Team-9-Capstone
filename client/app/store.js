@@ -5,8 +5,10 @@ import taskReducer from "../features/slices/TaskSlice";
 
 // import subTaskReducer from "../features/slices/SubTaskSlice";
 
+import profileReducer from "../features/slices/profileSlice";
+
 const store = configureStore({
-  reducer: { auth: authReducer, tasks: taskReducer },
+  reducer: { auth: authReducer, tasks: taskReducer, profile: profileReducer },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  profileImage: null,
-};
-
 const profileSlice = createSlice({
   name: "profile",
-  initialState,
+  initialState: {
+    profileImageUrl: null,
+    email: "",
+  },
   reducers: {
-    setProfileImage: (state, action) => {
-      state.profileImage = action.payload;
+    setProfileImageUrl: (state, action) => {
+      state.profileImageUrl = action.payload;
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload;
     },
   },
 });
 
-// Export the reducer and actions
-export const { setProfileImage } = profileSlice.actions;
+export const { setProfileImageUrl, setEmail } = profileSlice.actions;
 
-// Define the selector to retrieve the profile image
-export const selectProfileImage = (state) => state.profile.profileImage;
+export const selectProfileImageUrl = (state) => state.profile.profileImageUrl;
+export const selectEmail = (state) => state.profile.email;
 
-// Export the profile reducer
 export default profileSlice.reducer;
