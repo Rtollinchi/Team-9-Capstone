@@ -51,12 +51,12 @@ const AddTask = () => {
   }, [dispatch]);
 
  return (
-  <div className="flex flex-col h-screen w-screen px-10">
+  <div className="flex flex-col min-h-screen px-10">
     <header className="flex justify-between items-center mt-10 mb-5">
       <h1 className="text-4xl text-white underline">Add Task Here</h1>
     </header>
 
-    <main className="flex-grow overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
+    <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
       <form id="task-form" onSubmit={handleSubmit} className=" text-white space-y-4">
         <div>
           <label htmlFor="title" className="block text-lg font-medium text-white ">Title:</label>

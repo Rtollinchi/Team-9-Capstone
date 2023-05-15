@@ -7,7 +7,7 @@ const LoggedInLayout = ({ children }) => {
       <div className="w-1/6">
         <Navbar />
       </div>
-      <div className="w-5/6">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 };
