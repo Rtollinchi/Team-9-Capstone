@@ -8,21 +8,22 @@ import { authenticate } from "../../app/store";
   Props for Sign up: name="signup", displayName="Sign Up"
 **/
 
-const AuthForm = ({ name, displayName }) => {
+const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const formName = evt.target.name;
+    const email = evt.target.email.value;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
-    dispatch(authenticate({ username, password, method: formName }));
+    dispatch(authenticate({ email, username, password, method: formName }));
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 p-4">
+    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             {displayName}
@@ -43,8 +44,20 @@ const AuthForm = ({ name, displayName }) => {
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-t-md focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white"
                 placeholder="Username"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white "
+                placeholder="Email@mail.com"
               />
             </div>
             <div>
@@ -55,7 +68,7 @@ const AuthForm = ({ name, displayName }) => {
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:z-10 sm:text-sm bg-white outline-none"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500  focus:z-10 sm:text-sm bg-white "
                 placeholder="Password"
               />
             </div>
@@ -69,18 +82,14 @@ const AuthForm = ({ name, displayName }) => {
               {displayName}
             </button>
             <button className="text-white">
-              Don't have an account?
-              <Link to="/signup" className="hover:underline text-indigo-500">
-                {" "}
-                Sign up here!{" "}
-              </Link>
+              Already have an account? <Link to="/login" className="text-indigo-600 hover:underline"> Login here </Link>
             </button>
           </div>
-          {error && <div className="text-red-500 mt-2"> {error} </div>}
+          {error && <div className="text-red-500 mt-2">{error}</div>}
         </form>
       </div>
     </div>
   );
 };
 
-export default AuthForm;
+export default SignUpForm;
