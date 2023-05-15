@@ -19,13 +19,8 @@ const Profile = () => {
   };
 
   const handleUpload = () => {
-    dispatch(setProfileImageUrl(selectedImage));
-    dispatch(selectEmail(email));
-    // Logic to upload the selected image and email goes here
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    dispatch(setProfileImage(selectedImage));
+    // Logic to upload the selected image goes here
   };
 
   return (
