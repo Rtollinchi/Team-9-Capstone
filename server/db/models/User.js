@@ -25,8 +25,8 @@ const User = db.define("user", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
-    defaultImage:
-      "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg",
+    defaultValue:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9a4LOtFfL4JDcvxN6j4FRccYiSNxgbi2BGB67-h1OTg&usqp=CAU&ec=48665699",
   },
 });
 

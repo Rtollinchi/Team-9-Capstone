@@ -11,45 +11,50 @@ const Navbar = () => {
     dispatch(logout());
     navigate("/login");
   };
-
   return (
-    <div className="fixed h-screen bg-gray-50 p-0">
-      <div className="flex flex-col items-center justify-between h-full">
-        {" "}
-        {/* Added classes for flex layout and padding */}
-        <nav>
-          {isLoggedIn ? (
-            <div>
-              <Link to="/home">
-                <img className="w-20 h-20 mb-10" src="home.png" />{" "}
-                {/* Increased size and added bottom margin */}
-              </Link>
-              <Link to="/calendar">
-                <img className="w-20 h-20 mb-10" src="calendar.png" />{" "}
-                {/* Increased size and added bottom margin */}
-              </Link>
-              <Link to="/newtasks">
-                <img className="w-20 h-20 mb-10" src="add.png" />{" "}
-                {/* Increased size and added bottom margin */}
-              </Link>
-              <Link to="/profile">
-                <img className="w-20 h-20 mb-10" src="user.png" />{" "}
-                {/* Increased size and added bottom margin */}
-              </Link>
-              <button type="button" onClick={logoutAndRedirectHome}>
-                <img className="w-20 h-20 mb-10" src="exit_480.png" />{" "}
-                {/* Increased size and added bottom margin */}
-              </button>
-            </div>
-          ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
-        </nav>
-      </div>
+    <div className="flex flex-col items-center justify-between h-full bg-blue-900 p-4">
+      <nav>
+        {isLoggedIn ? (
+          <div>
+            <Link
+              to="/home"
+              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            >
+              <img className="text-white w-10 h-10" src="home.png" />
+            </Link>
+            <Link
+              to="/calendar"
+              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            >
+              <img className="text-white w-10 h-10" src="calendar.png" />
+            </Link>
+            <Link
+              to="/newtasks"
+              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            >
+              <img className="text-white w-10 h-10" src="add.png" />
+            </Link>
+            <Link
+              to="/profile"
+              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            >
+              <img className="text-white w-10 h-10" src="user.png" />
+            </Link>
+            <button
+              type="button"
+              onClick={logoutAndRedirectHome}
+              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            >
+              <img className="text-white w-10 h-10" src="exit_480.png" />
+            </button>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+        )}
+      </nav>
     </div>
   );
 };

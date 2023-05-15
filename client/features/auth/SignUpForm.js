@@ -22,15 +22,15 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             {displayName}
           </h2>
         </div>
         <form
-          className="mt-8 space-y-6 border border-gray-400 rounded p-4"
+          className="mt-8 space-y-6 border border-white rounded p-4"
           onSubmit={handleSubmit}
           name={name}
         >
@@ -44,7 +44,7 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white"
                 placeholder="Username"
               />
             </div>
@@ -56,7 +56,7 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white "
                 placeholder="Email@mail.com"
               />
             </div>
@@ -68,7 +68,7 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500  focus:z-10 sm:text-sm bg-white "
                 placeholder="Password"
               />
             </div>
@@ -77,12 +77,12 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {displayName}
             </button>
-            <button className="text-black">
-              Already have an account? <Link to="/login" className="text-blue-500 hover:underline"> Login here </Link>
+            <button className="text-white">
+              Already have an account? <Link to="/login" className="text-indigo-600 hover:underline"> Login here </Link>
             </button>
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}
