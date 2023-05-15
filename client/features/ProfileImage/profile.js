@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  setProfileImageURL,
-  setEmail,
-  setProfileImageUrl,
-} from "../slices/profileSlice";
+import { setProfileImageUrl, selectEmail } from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -24,7 +20,7 @@ const Profile = () => {
 
   const handleUpload = () => {
     dispatch(setProfileImageUrl(selectedImage));
-    dispatch(setEmail(email));
+    dispatch(selectEmail(email));
     // Logic to upload the selected image and email goes here
   };
 

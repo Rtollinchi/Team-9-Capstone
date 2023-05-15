@@ -3,17 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
-import { selectEmail } from "../slices/profileSlice";
 import { updateTask } from "../slices/TaskSlice";
+import { selectProfileImageUrl, selectEmail } from "../slices/profileSlice";
 /**
  * COMPONENT
  */
 const Home = () => {
   const dispatch = useDispatch();
-  const email = useSelector(selectEmail);
 
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
+  const profileImageUrl = useSelector(selectProfileImageUrl);
+  const email = useSelector(selectEmail);
   const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
   const topLevelTasks = tasks.filter(
@@ -37,8 +38,9 @@ const Home = () => {
     <div className="border-x-2">
       <span>
         <h3>Welcome, {username}</h3>
-        <h3>Email: {email}</h3> {/* Display the email */}
         <h3>{currentDate}</h3>
+        <h3>{email}</h3>
+        {profileImageUrl && <imag src={profileImageUrl} alt="Profile Image" />}
         <h3>Total Tasks Completed: {totalTasksCompleted.length} </h3>
       </span>
       <div className="scroll-box rounded-md border-2 border-black">
