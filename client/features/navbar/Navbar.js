@@ -11,50 +11,42 @@ const Navbar = () => {
     dispatch(logout());
     navigate("/login");
   };
+
   return (
-    <div className="flex flex-col items-center justify-between h-full bg-blue-900 p-4">
+    <div className="bg-blue-600">
+      <h1>Welcome!</h1>
       <nav>
         {isLoggedIn ? (
           <div>
-            <Link
-              to="/home"
-              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
-            >
-              <img className="text-white w-10 h-10" src="home.png" />
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">
+              <img src="home.png" />
             </Link>
-            <Link
-              to="/calendar"
-              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
-            >
-              <img className="text-white w-10 h-10" src="calendar.png" />
+            <Link to="/calendar">
+              <img src="calendar.png" />
             </Link>
-            <Link
-              to="/newtasks"
-              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
-            >
-              <img className="text-white w-10 h-10" src="add.png" />
+            <Link to="/newtasks">
+              <img src="add.png" />
             </Link>
-            <Link
-              to="/profile"
-              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
-            >
-              <img className="text-white w-10 h-10" src="user.png" />
+            {/* <Link to="/addSubTask">
+              <img src="add-subtask.png" />
+            </Link> */}
+            <Link to="/profile">
+              <img src="user.png" />
             </Link>
-            <button
-              type="button"
-              onClick={logoutAndRedirectHome}
-              className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
-            >
-              <img className="text-white w-10 h-10" src="exit_480.png" />
+            <button type="button" onClick={logoutAndRedirectHome}>
+              <img src="exit_480.png" />
             </button>
           </div>
         ) : (
           <div>
+            {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
+      <hr />
     </div>
   );
 };

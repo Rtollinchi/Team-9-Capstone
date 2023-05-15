@@ -12,10 +12,15 @@
 </head>
 
 <body>
+  <form action="/users/upload" method="POST" enctype="multipart/form-data">
+    <label for="image" class="upload-icon">
+      <i class="fas fa-user-circle"></i> <!-- Replace with your desired icon -->
+    </label>
+    <input type="file" id="image" name="image" class="upload-input">
+    <button type="submit" class="upload-button">Upload</button>
+  </form>
+
   <div id="app"></div>
-
-
-</body>
 </body>
 
 </html>

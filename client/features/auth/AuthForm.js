@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { authenticate } from "../../app/store";
+
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -21,64 +21,25 @@ const AuthForm = ({ name, displayName }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 p-4">
+    <div className="bg-red-500">
+      <form onSubmit={handleSubmit} name={name}>
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            {displayName}
-          </h2>
+          <label htmlFor="username">
+            <small>Username</small>
+          </label>
+          <input name="username" type="text" />
         </div>
-        <form
-          className="mt-8 space-y-6 border border-white rounded p-4"
-          onSubmit={handleSubmit}
-          name={name}
-        >
-          <input type="hidden" name="remember" value="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="username" className="sr-only">
-                Username
-              </label>
-              <input
-                name="username"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-t-md focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
-                placeholder="Username"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                name="password"
-                type="password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:z-10 sm:text-sm bg-white outline-none"
-                placeholder="Password"
-              />
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              {displayName}
-            </button>
-            <button className="text-white">
-              Don't have an account?
-              <Link to="/signup" className="hover:underline text-indigo-500">
-                {" "}
-                Sign up here!{" "}
-              </Link>
-            </button>
-          </div>
-          {error && <div className="text-red-500 mt-2"> {error} </div>}
-        </form>
-      </div>
+        <div>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </div>
+        <div>
+          <button type="submit">{displayName}</button>
+        </div>
+        {error && <div> {error} </div>}
+      </form>
     </div>
   );
 };
