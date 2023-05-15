@@ -25,8 +25,7 @@ const User = db.define("user", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9a4LOtFfL4JDcvxN6j4FRccYiSNxgbi2BGB67-h1OTg&usqp=CAU&ec=48665699",
+    defaultValue: "https://cdn-icons-png.flaticon.com/512/44/44948.png?w=1060&t=st=1684166078~exp=1684166678~hmac=5d6e90600f2af97770db574234a99607de027e5281363f1d95151fd846f7e14d",
   },
 });
 

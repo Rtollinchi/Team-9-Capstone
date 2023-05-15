@@ -13,7 +13,6 @@ const Home = () => {
 
   const username = useSelector((state) => state.auth.me.username);
   const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
-  console.log("avatarUrl", avatarUrl);
   const tasks = useSelector(selectTasks);
   const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
@@ -36,23 +35,21 @@ const Home = () => {
   console.log("tasks", tasks);
 
   return (
-    <div className="flex flex-col h-screen w-screen px-10">
-      <header className="flex justify-between items-center mt-10 mb-5">
-        <div>
-          <img
-            src={avatarUrl}
-            alt="Profile"
-            className="w-16 h-16 rounded-full"
-          />
-          <h1 className="text-2xl text-white underline">Welcome, {username}</h1>
-        </div>
+    <div className="flex flex-col h-screen  px-10">
+      <header className="flex flex-col items-center mt-10 mb-5">
+        <h1 className="text-2xl text-white underline">Welcome, {username}</h1>
+        <img
+          src={avatarUrl}
+          alt="Profile"
+          className="w-16 h-16 rounded-full my-4"
+        />
         <h2 className="text-2xl text-white underline">{currentDate}</h2>
         <h3 className="text-2xl text-white underline">
           Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
       </header>
 
-      <main className="flex-grow overflow-auto p-6 mt-5 w-1/2 max-h-80 mx-auto rounded-md shadow-darker bg-blue-900">
+      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-80 mx-auto rounded-md shadow-darker bg-blue-900">
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => (
             <TaskItem
@@ -93,8 +90,8 @@ const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
           <input
             type="checkbox"
             className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200 mr-2"
-            checked={task.isCompleted}
-            onChange={() => handleUpdate(task.id)}
+            checked={subtask.isCompleted}
+            onChange={() => handleUpdate(subtask.id)}
           />
           {subtask.title}
         </li>
