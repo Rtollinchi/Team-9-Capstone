@@ -1,41 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTasks } from "../slices/TaskSlice";
-import { selectTasks } from "../slices/TaskSlice";
-// import { subTaskSlice } from "../slices/SubTaskSlice";
-import { updateTask } from "../slices/TaskSlice";
-import profileSlice from "../slices/profileSlice";
+import { fetchTasks, updateTask, selectTasks } from "../slices/TaskSlice";
 import { selectProfileImageUrl, selectEmail } from "../slices/profileSlice";
-/**
- * COMPONENT
- */
+
 const Home = () => {
   const dispatch = useDispatch();
 
-  const username = useSelector((state) => state.auth.me.username);
-  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
-  const tasks = useSelector(selectTasks);
-  const profileImageUrl = useSelector(selectProfileImageUrl);
-  const email = useSelector(selectEmail);
-  const currentDate = new Date().toLocaleDateString();
-  const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
-  const topLevelTasks = tasks.filter(
-    (task) => !task.parentId && !task.isCompleted
-  );
-  const getSubtasks = (taskId) => {
-    return tasks.filter(
-      (task) => task.parentId === taskId && !task.isCompleted
-    );
-  };
-  const handleUpdate = (taskId) => {
-    const taskToUpdate = tasks.find((task) => task.id === taskId);
-    const updatedTask = { ...taskToUpdate, isCompleted: true };
-    dispatch(updateTask(updatedTask));
-  };
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-  console.log("tasks", tasks);
+  // ...other code
 
   return (
     <div className="border-x-2">
@@ -57,12 +28,11 @@ const Home = () => {
         ) : (
           <p className="text-center text-gray-500">No tasks</p>
         )}
-      </main>
+      </div>
     </div>
   );
 };
 
-// Extracted TaskItem component
 const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
   const subtasks = getSubtasks(task.id);
 
