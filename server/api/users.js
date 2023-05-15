@@ -33,7 +33,7 @@ router.post("/upload-image", (req, res, next) => {
     // Update the user record with the uploaded image filename
     User.findByPk(userId)
       .then((user) => {
-        user.image = filename;
+        user.avatarUrl = '/uploads/' + filename;
         return user.save();
       })
       .then(() => {
@@ -47,4 +47,4 @@ router.post("/upload-image", (req, res, next) => {
 
 module.exports = router;
 
-module.exports = router;
+

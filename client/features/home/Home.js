@@ -12,6 +12,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const username = useSelector((state) => state.auth.me.username);
+  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
+  console.log("avatarUrl", avatarUrl);
   const tasks = useSelector(selectTasks);
   const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
@@ -34,66 +36,70 @@ const Home = () => {
   console.log("tasks", tasks);
 
   return (
-    <div className="flex flex-col h-screen w-screen">
-      <div className="flex">
-        <div className="grid grid-flow-col  justify-around w-screen">
-          <div>
-            <h1 className="text-4xl">Image Placholder</h1>
-            <h1 className="text-4xl">Welcome, {username}</h1>
-          </div>
-          {/* <img src={profileImg} /> */}
-          <h2 className="text-4xl">{currentDate}</h2>
+    <div className="flex flex-col h-screen w-screen px-10">
+      <header className="flex justify-between items-center mt-10 mb-5">
+        <div>
+          <img
+            src={avatarUrl}
+            alt="Profile"
+            className="w-16 h-16 rounded-full"
+          />
+          <h1 className="text-2xl text-white underline">Welcome, {username}</h1>
         </div>
-
-        <h3 className="text-4xl self-center">
-          Total Tasks Completed: {totalTasksCompleted.length}{" "}
+        <h2 className="text-2xl text-white underline">{currentDate}</h2>
+        <h3 className="text-2xl text-white underline">
+          Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
-      </div>
-      <div
-        className="content-center self-center rounded p-4 max-h-80  scrollbar-hide overflow-auto w-1/2 text-2xl my-5 resize rounded-md min-w-[20%] max-w-[70%]"
-        style={{ boxShadow: "0px 0px 25px rgba(0, 0, 0, 0.5)" }}
-      >
+      </header>
+
+      <main className="flex-grow overflow-auto p-6 mt-5 w-1/2 max-h-80 mx-auto rounded-md shadow-darker bg-blue-900">
         {topLevelTasks.length > 0 ? (
-          topLevelTasks.map((task) => {
-            const subtasks = getSubtasks(task.id);
-            return (
-              <ul key={task.id} className="list-none my-2 p-1 text-center ">
-                <li className="text-4xl shadow-lg rounded-full flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-4 w-4 rounded-full bg-gray-200 m-4"
-                    checked={task.isCompleted}
-                    onChange={() => {
-                      handleUpdate(task.id);
-                    }}
-                  />
-                  <span className="flex-1">{task.title}</span>
-                </li>
-                {subtasks.length > 0 &&
-                  subtasks.map((subtask) => (
-                    <li
-                      key={subtask.id}
-                      className="list-none text-center indent-2"
-                    >
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200"
-                        checked={task.isCompleted}
-                        onChange={() => {
-                          handleUpdate(task.id);
-                        }}
-                      />
-                      {subtask.title}
-                    </li>
-                  ))}
-              </ul>
-            );
-          })
+          topLevelTasks.map((task) => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              getSubtasks={getSubtasks}
+              handleUpdate={handleUpdate}
+            />
+          ))
         ) : (
-          <p className="text-center">No tasks</p>
+          <p className="text-center text-gray-500">No tasks</p>
         )}
-      </div>
+      </main>
     </div>
+  );
+};
+
+// Extracted TaskItem component
+const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
+  const subtasks = getSubtasks(task.id);
+
+  return (
+    <ul className="list-none my-2 p-1">
+      <li className="text-lg shadow- rounded flex items-center justify-start mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
+        <input
+          type="checkbox"
+          className="form-checkbox h-4 w-4 rounded bg-gray-200 mr-4 shadow-darker"
+          checked={task.isCompleted}
+          onChange={() => handleUpdate(task.id)}
+        />
+        <span className="flex-1 text-white">{task.title}</span>
+      </li>
+      {subtasks.map((subtask) => (
+        <li
+          key={subtask.id}
+          className="list-none text-center indent-2 text-sm ml-8"
+        >
+          <input
+            type="checkbox"
+            className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200 mr-2"
+            checked={task.isCompleted}
+            onChange={() => handleUpdate(task.id)}
+          />
+          {subtask.title}
+        </li>
+      ))}
+    </ul>
   );
 };
 
