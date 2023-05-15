@@ -1,13 +1,19 @@
 import React from "react";
-
-import Navbar from "../features/navbar/Navbar";
+import { useSelector } from "react-redux";
 import AppRoutes from "./AppRoutes";
 
 const App = () => {
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+
   return (
     <div>
-      <Navbar />
-      <AppRoutes />
+      {isLoggedIn ? (
+        <div>
+          <AppRoutes />
+        </div>
+      ) : (
+        <AppRoutes />
+      )}
     </div>
   );
 };

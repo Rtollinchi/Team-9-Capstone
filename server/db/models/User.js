@@ -17,7 +17,7 @@ const User = db.define("user", {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
+    allowNull: true,
   },
   password: {
     type: Sequelize.STRING,
@@ -25,8 +25,7 @@ const User = db.define("user", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
-    defaultImage:
-      "https://static.vecteezy.com/system/resources/previews/009/734/564/original/default-avatar-profile-icon-of-social-media-user-vector.jpg",
+    defaultValue: "https://cdn-icons-png.flaticon.com/512/44/44948.png?w=1060&t=st=1684166078~exp=1684166678~hmac=5d6e90600f2af97770db574234a99607de027e5281363f1d95151fd846f7e14d",
   },
 });
 
