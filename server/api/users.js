@@ -2,9 +2,7 @@ const router = require("express").Router();
 const {
   models: { User },
 } = require("../db");
-<<<<<<< HEAD
 module.exports = router;
-=======
 
 // POST /api/users/upload-image - Endpoint to handle image uploads
 router.post("/upload-image", (req, res, next) => {
@@ -36,7 +34,7 @@ router.post("/upload-image", (req, res, next) => {
     // Update the user record with the uploaded image filename
     User.findByPk(userId)
       .then((user) => {
-        user.avatarUrl = '/uploads/' + filename;
+        user.avatarUrl = "/uploads/" + filename;
         return user.save();
       })
       .then(() => {
@@ -49,6 +47,3 @@ router.post("/upload-image", (req, res, next) => {
 });
 
 module.exports = router;
-
-
->>>>>>> origin/main
