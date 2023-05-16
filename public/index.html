@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="bundle.js" defer></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link href="output.css" rel="stylesheet" /> -->
+    <title>TodoGenie</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="bundle.js" defer></script>
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- <link href="output.css" rel="stylesheet" /> -->
-  <title>TodoGenie</title>
-</head>
-
-<body>
-  <form action="/users/upload" method="POST" enctype="multipart/form-data">
-    <label for="image" class="upload-icon">
-      <i class="fas fa-user-circle"></i> <!-- Replace with your desired icon -->
-    </label>
-    <input type="file" id="image" name="image" class="upload-input">
-    <button type="submit" class="upload-button">Upload</button>
-  </form>
-
-  <div id="app"></div>
-</body>
-
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
