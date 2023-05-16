@@ -5,12 +5,15 @@ const TOKEN = "token";
 
 export const updateProfile = createAsyncThunk(
   "updateProfile",
-  async (avatarUrl) => {
+  async (avatarFile) => {
     const token = window.localStorage.getItem(TOKEN);
-    console.log("IMAGE", avatarUrl);
-    const response = await axios.put(`/api/users/upload-image`, avatarUrl, {
+    const formData = new FormData();
+    formData.append("file", avatarFile);
+    console.log("FILE", avatarFile);
+    const response = await axios.put(`/api/users/upload-image`, formData, {
       headers: {
         authorization: token,
+        "Content-Type": "multipart/form-data",
       },
     });
     return response.data;

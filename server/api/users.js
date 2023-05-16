@@ -1,72 +1,50 @@
 const router = require("express").Router();
+const fileUpload = require("express-fileupload");
+const fs = require("fs");
+const path = require("path");
 const {
   models: { User },
 } = require("../db");
 const { requireToken } = require("./gatekeepingmiddleware");
+router.use(fileUpload());
 
-// POST /api/users/upload-image - Endpoint to handle image uploads
-router.put("/upload-image", requireToken, (req, res, next) => {
+router.put("/upload-image", requireToken, (req, res) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
 
-  // Get the uploaded file
-  const { image } = req.files;
-  console.log("image", image);
-  // Process the uploaded image
-  // Here, you can save the image to a specific directory or perform any other required operations
+  const user = req.user;
+  const userId = user.id;
 
-  // Example: Save the image with a unique filename
-  const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-  const fileExtension = image.name.split(".").pop();
-  const filename = `${uniqueSuffix}.${fileExtension}`;
-  const filePath = `public/uploads/${filename}`;
+  const file = req.files.file;
+
+  // Generate a unique filename for the image using the user's ID
+  const fileName = `${userId}-${Date.now()}-${file.name}`;
+
+  // Define the path where the image will be stored
+  const filePath = path.join(__dirname, "../uploads", fileName);
 
   // Move the file to the desired location
-  image.mv(filePath, (error) => {
-    if (error) {
-      return next(error);
+  file.mv(filePath, (err) => {
+    if (err) {
+      return res.status(500).send(err);
     }
 
-    // Get the user ID from the request
-    const user = req.user;
-    const userId = user.id;
-    console.log("userId", userId);
-    // Update the user record with the uploaded image filename
-    User.findByPk(userId)
-      .then((user) => {
-        user.avatarUrl = "/uploads/" + filename;
-        return user.save();
-      })
+    // Update the user's profile image in the database
+    User.update({ profileImage: fileName }, { where: { id: userId } })
       .then(() => {
-        res.status(200).send("Image uploaded successfully.");
+        res.send("File uploaded successfully.");
       })
       .catch((error) => {
-        next(error);
+        // If there is an error updating the user's profile image in the database,
+        // you may want to delete the uploaded file to maintain consistency.
+        fs.unlinkSync(filePath);
+        res.status(500).send("Error updating profile image.");
       });
   });
 });
 
 module.exports = router;
 // const express = require('express');
-// const fileUpload = require('express-fileupload');
 
 // const app = express();
-// app.use(fileUpload());
-// app.post('/upload', (req, res) => {
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('No files were uploaded.');
-//   }
-
-//   // The name 'file' should match the name attribute of the input field in the HTML form
-//   const file = req.files.file;
-
-//   // Use the mv() method to move the file to the desired location
-//   file.mv('./uploads/' + file.name, (err) => {
-//     if (err) {
-//       return res.status(500).send(err);
-//     }
-
-//     res.send('File uploaded successfully.');
-//   });
-// });

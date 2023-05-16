@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { updateProfile } from "../slices/profileSlice";
 
@@ -6,6 +6,7 @@ const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   // const [email, setEmail] = useState("");
   const dispatch = useDispatch();
+  const fileInputRef = useRef(null);
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -19,7 +20,7 @@ const Profile = () => {
   };
 
   const handleUpload = () => {
-    console.log(typeof selectedImage);
+    console.log(selectedImage);
     if (selectedImage) {
       dispatch(updateProfile(selectedImage));
     }
@@ -32,6 +33,7 @@ const Profile = () => {
           type="file"
           id="profile-image"
           name="profile-image"
+          ref={fileInputRef}
           accept="image/*"
           onChange={handleFileSelect}
         />
