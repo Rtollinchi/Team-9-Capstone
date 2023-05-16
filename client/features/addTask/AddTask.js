@@ -53,7 +53,7 @@ const AddTask = () => {
  return (
   <div className="flex flex-col min-h-screen px-10">
     <header className="flex justify-between items-center mt-10 mb-5">
-      <h1 className="text-4xl text-white underline">Add Task Here</h1>
+      <h1 className="text-4xl text-white underline">Add A Task Or A Subtask</h1>
     </header>
 
     <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
@@ -64,7 +64,8 @@ const AddTask = () => {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white shadow-darker outline-none"
+            className="bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+            style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
           />
         </div>
 
@@ -75,6 +76,7 @@ const AddTask = () => {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
             className="bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
+            style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
           />
         </div>
 
@@ -85,6 +87,7 @@ const AddTask = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="text=lg bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
+            style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
           />
         </div>
 
@@ -96,6 +99,7 @@ const AddTask = () => {
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
             className="text-lg bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+            style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
           >
             {priorityOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -106,14 +110,14 @@ const AddTask = () => {
         </div>
         <div>
           <label htmlFor="Task List" className="block text-sm font-medium text-white">Add as a subtask:</label>
-          <div className="shadow-darker">
           <select
             id="Task List"
             name="Task List"
             value={tasks.id}
             onChange={(e) => setParentTaskId(e.target.value)}
-            className="text-lg bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none shadow-darker"
-          >
+            className="text-lg bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+            style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
+            >
             <option>Not a subtask</option>
             {topLevelTasks.map((task) => (
               <option key={task.id} value={task.id}>
@@ -122,10 +126,10 @@ const AddTask = () => {
             ))}
           </select>
           </div>
-        </div>
 
         <button
           className="bg-white text-black font-bold py-2 px-4 rounded"
+          style={{boxShadow: '5px 5px 10px rgba(0,0,0,0.3)'}}
           type="submit"
         >
           Submit
