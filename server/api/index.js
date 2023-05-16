@@ -27,7 +27,6 @@ router.use((req, res, next) => {
 // Mount your other route handlers
 router.use("/users", require("./users"));
 router.use("/tasks", require("./tasks"));
-router.use("/subTasks", require("./subTasks"));
 
 // 404 handler
 router.use((req, res, next) => {

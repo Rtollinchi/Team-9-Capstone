@@ -21,18 +21,19 @@ const Profile = () => {
 
   const handleUpload = () => {
     console.log(selectedImage);
-    if (selectedImage) {
-      dispatch(updateProfile(selectedImage));
+    if (fileInputRef.current && fileInputRef.current.files.length > 0) {
+      const file = fileInputRef.current.files[0];
+      dispatch(updateProfile(file));
     }
   };
 
   return (
     <div className="flex flex-col h-screen  px-10">
-      <form>
+      <form encType="multipart/form-data">
         <input
           type="file"
           id="profile-image"
-          name="profile-image"
+          name="file"
           ref={fileInputRef}
           accept="image/*"
           onChange={handleFileSelect}

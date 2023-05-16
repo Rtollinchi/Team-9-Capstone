@@ -10,7 +10,9 @@ export const updateProfile = createAsyncThunk(
     const formData = new FormData();
     formData.append("file", avatarFile);
     console.log("FILE", avatarFile);
-    const response = await axios.put(`/api/users/upload-image`, formData, {
+    // const file = formData.get("file");
+    // console.log("File", file);
+    const response = await axios.put(`/api/users/uploadImage`, formData, {
       headers: {
         authorization: token,
         "Content-Type": "multipart/form-data",

@@ -1,20 +1,21 @@
 const router = require("express").Router();
-const fileUpload = require("express-fileupload");
+
 const fs = require("fs");
 const path = require("path");
 const {
   models: { User },
 } = require("../db");
 const { requireToken } = require("./gatekeepingmiddleware");
-router.use(fileUpload());
 
-router.put("/upload-image", requireToken, (req, res) => {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send("No files were uploaded.");
-  }
-
+router.put("/uploadImage", requireToken, (req, res) => {
   const user = req.user;
   const userId = user.id;
+  console.log(userId);
+  if (!req.files || Object.keys(req.files).length === 0) {
+    console.log("bad ");
+    console.log(req.files);
+    return res.status(400).send("No files were uploaded.");
+  }
 
   const file = req.files.file;
 
@@ -22,8 +23,8 @@ router.put("/upload-image", requireToken, (req, res) => {
   const fileName = `${userId}-${Date.now()}-${file.name}`;
 
   // Define the path where the image will be stored
-  const filePath = path.join(__dirname, "../uploads", fileName);
-
+  const filePath = path.join(__dirname, "../../uploads", fileName);
+  console.log(filePath);
   // Move the file to the desired location
   file.mv(filePath, (err) => {
     if (err) {
@@ -31,7 +32,7 @@ router.put("/upload-image", requireToken, (req, res) => {
     }
 
     // Update the user's profile image in the database
-    User.update({ profileImage: fileName }, { where: { id: userId } })
+    User.update({ avatarUrl: fileName }, { where: { id: userId } })
       .then(() => {
         res.send("File uploaded successfully.");
       })
@@ -45,6 +46,3 @@ router.put("/upload-image", requireToken, (req, res) => {
 });
 
 module.exports = router;
-// const express = require('express');
-
-// const app = express();

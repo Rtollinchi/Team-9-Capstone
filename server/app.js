@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
 const app = express();
 module.exports = app;
 
@@ -9,7 +10,7 @@ app.use(morgan("dev"));
 
 // body parsing middleware
 app.use(express.json());
-
+app.use(fileUpload());
 // auth and api routes
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
