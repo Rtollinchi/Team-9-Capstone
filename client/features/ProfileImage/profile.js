@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setProfileImageUrl, selectEmail } from "../slices/profileSlice";
+import { setProfileImageUrl, setEmail } from "../slices/profileSlice";
+import { ProfileImage } from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -16,16 +17,34 @@ const Profile = () => {
       };
       reader.readAsDataURL(file);
     }
+    const handleSubmit = async (e) => {
+      await e.preventDefault();
+      console.log(parentTaskId);
+
+      if (!parentTaskId) {
+        dispatch({ title, description, priority, userId, dueDate });
+      } else {
+        const parentId = parseInt(parentTaskId);
+        console.log(parentId);
+        dispatch(
+          addTasks({ title, description, priority, userId, parentId, dueDate })
+        );
+      }
+      setTitle("");
+      setDescription("");
+      setPriority("Low");
+      setDueDate(new Date());
+    };
   };
 
   const handleUpload = () => {
-    dispatch(setProfileImage(selectedImage));
+    dispatch(setProfileImageUrl(selectedImage));
     // Logic to upload the selected image goes here
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="file"
           id="profile-image"
@@ -39,11 +58,10 @@ const Profile = () => {
           name="email"
           placeholder="Email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="button" onClick={handleUpload}>
-          Upload
-        </button>
+
+        <button type="submit">Upload</button>
       </form>
       {selectedImage && (
         <div>
