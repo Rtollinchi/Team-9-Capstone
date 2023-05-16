@@ -17,6 +17,24 @@ const Profile = () => {
       };
       reader.readAsDataURL(file);
     }
+    const handleSubmit = async (e) => {
+      await e.preventDefault();
+      console.log(parentTaskId);
+
+      if (!parentTaskId) {
+        dispatch({ title, description, priority, userId, dueDate });
+      } else {
+        const parentId = parseInt(parentTaskId);
+        console.log(parentId);
+        dispatch(
+          addTasks({ title, description, priority, userId, parentId, dueDate })
+        );
+      }
+      setTitle("");
+      setDescription("");
+      setPriority("Low");
+      setDueDate(new Date());
+    };
   };
 
   const handleUpload = () => {

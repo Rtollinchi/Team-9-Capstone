@@ -20,7 +20,7 @@ export const updateProfile = createAsyncThunk(
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
-    profileImageUrl: null,
+    profileImageUrl: "",
     email: "",
   },
   reducers: {
