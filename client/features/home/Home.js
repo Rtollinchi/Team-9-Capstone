@@ -17,7 +17,7 @@ const Home = () => {
   const [error, setError] = useState(null);
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
-  const profileImageUrl = useSelector(selectProfileImageUrl);
+  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
   const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
@@ -76,6 +76,7 @@ const Home = () => {
           alt="Profile"
           className="w-16 h-16 rounded-full my-4"
         />
+
         <h3 className="text-2xl text-white underline">
           Total Tasks Completed: {totalTasksCompleted.length}
         </h3>

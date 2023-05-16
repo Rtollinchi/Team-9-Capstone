@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setProfileImageUrl, selectEmail } from "../slices/profileSlice";
+import updateProfile from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,12 +20,12 @@ const Profile = () => {
   };
 
   const handleUpload = () => {
-    dispatch(setProfileImage(selectedImage));
+    dispatch(updateProfile(selectedImage));
     // Logic to upload the selected image goes here
   };
-
+  console.log("image", selectedImage);
   return (
-    <div>
+    <div className="flex flex-col h-screen  px-10">
       <form>
         <input
           type="file"
@@ -33,21 +34,25 @@ const Profile = () => {
           accept="image/*"
           onChange={handleFileSelect}
         />
-        <input
+        {/* <input
           type="email"
           id="email"
           name="email"
           placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
+
+          // onChange={handleEmailChange}
+        /> */}
         <button type="button" onClick={handleUpload}>
           Upload
         </button>
       </form>
       {selectedImage && (
         <div>
-          <img src={selectedImage} alt="Selected Profile" />
+          <img
+            src={selectedImage}
+            alt="Selected Profile"
+            className="w-16 h-16 rounded-full my-4"
+          />
         </div>
       )}
     </div>

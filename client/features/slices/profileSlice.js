@@ -3,16 +3,20 @@ import axios from "axios";
 
 const TOKEN = "token";
 
-export const ProfileImage = createAsyncThunk("profileImage", async (Image) => {
-  const token = window.localStorage.getItem(TOKEN);
-  console.log(Image);
-  const response = await axios.put(`/api/users/${Image}`, Image, {
-    headers: {
-      authorization: token,
-    },
-  });
-  return response.data;
-});
+export const updateProfile = createAsyncThunk(
+  "updateProfile",
+  async (avatarUrl) => {
+    const token = window.localStorage.getItem(TOKEN);
+    console.log(avatarUrl);
+    const response = await axios.put(`/api/users/upload-image`, avatarUrl, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response.data;
+  }
+);
+
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
@@ -29,13 +33,14 @@ const profileSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(ProfileImage.pending, (state) => {
+      .addCase(updateProfile.pending, (state) => {
         console.log("pending");
       })
-      .addCase(ProfileImage.fulfilled, (state, action) => {
-        state.profileImageUrl = action;
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.profileImageUrl = action.payload;
       })
-      .addCase(ProfileImage.rejected, (state, action) => {
+      .addCase(updateProfile.rejected, (state, action) => {
         console.log("rejected", action.payload);
       });
   },
