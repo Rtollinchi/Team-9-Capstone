@@ -3,6 +3,7 @@ const {
   models: { User },
 } = require("../db");
 const { requireToken } = require("./gatekeepingmiddleware");
+
 // POST /api/users/upload-image - Endpoint to handle image uploads
 router.put("/upload-image", requireToken, (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -47,3 +48,25 @@ router.put("/upload-image", requireToken, (req, res, next) => {
 });
 
 module.exports = router;
+// const express = require('express');
+// const fileUpload = require('express-fileupload');
+
+// const app = express();
+// app.use(fileUpload());
+// app.post('/upload', (req, res) => {
+//   if (!req.files || Object.keys(req.files).length === 0) {
+//     return res.status(400).send('No files were uploaded.');
+//   }
+
+//   // The name 'file' should match the name attribute of the input field in the HTML form
+//   const file = req.files.file;
+
+//   // Use the mv() method to move the file to the desired location
+//   file.mv('./uploads/' + file.name, (err) => {
+//     if (err) {
+//       return res.status(500).send(err);
+//     }
+
+//     res.send('File uploaded successfully.');
+//   });
+// });
