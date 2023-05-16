@@ -6,7 +6,7 @@ const TOKEN = "token";
 export const ProfileImage = createAsyncThunk("profileImage", async (Image) => {
   const token = window.localStorage.getItem(TOKEN);
   console.log(Image);
-  const response = await axios.put(`/api/users/${Image}`, uploadImage, {
+  const response = await axios.put(`/api/users/${Image}`, Image, {
     headers: {
       authorization: token,
     },

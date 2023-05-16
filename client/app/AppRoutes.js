@@ -30,6 +30,7 @@ const AppRoutes = () => {
         <LoggedInLayout>
           <Routes>
             <Route path="/*" element={<Home />} />
+            {/* <Route path="/profile" element={<ProfileImage />} /> */}
             <Route path="/home" element={<Home />} />
             <Route path="/newtasks" element={<AddTask />} />
             {/* <Route path="/addSubTask" element={<AddSubTask />} /> */}

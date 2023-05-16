@@ -15,7 +15,7 @@ const Home = () => {
   const tasks = useSelector(selectTasks);
   const profileImageUrl = useSelector(selectProfileImageUrl);
   const email = useSelector(selectEmail);
-  const currentDate = new Date().toLocaleDateString();
+  // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
   const topLevelTasks = tasks.filter(
     (task) => !task.parentId && !task.isCompleted
@@ -38,8 +38,10 @@ const Home = () => {
     <div className="border-x-2">
       <span>
         <h3>Welcome, {username}</h3>
-        <h3>{currentDate}</h3>
+        {/* <h3>{currentDate}</h3> */}
         <h3>{email}</h3>
+        {console.log("Profile Image URL:", profileImageUrl)}
+
         {profileImageUrl && <imag src={profileImageUrl} alt="Profile Image" />}
         <h3>Total Tasks Completed: {totalTasksCompleted.length} </h3>
       </span>

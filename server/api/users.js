@@ -2,7 +2,6 @@ const router = require("express").Router();
 const {
   models: { User },
 } = require("../db");
-module.exports = router;
 
 // POST /api/users/upload-image - Endpoint to handle image uploads
 router.post("/upload-image", (req, res, next) => {

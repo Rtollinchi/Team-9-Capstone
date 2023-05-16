@@ -10,7 +10,7 @@ router.use((req, res, next) => {
   const userId = req.userId;
 
   // Fetch the user from the database
-  User.findById(userId)
+  User.findByPk(userId)
     .then((user) => {
       if (user) {
         // Set req.user to the fetched user object
