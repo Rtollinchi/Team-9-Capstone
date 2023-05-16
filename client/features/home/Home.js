@@ -72,10 +72,26 @@ const Home = () => {
     getQuote();
   }, [dispatch]);
 
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 5 && currentHour < 12) {
+      return "Good Morning";
+    }
+    if (currentHour >= 12 && currentHour < 18) {
+      return "Good Afternoon";
+    }
+    if (currentHour >= 18 && currentHour < 21) {
+      return "Good Evening";
+    }
+    return "Good Night";
+  };
+
   return (
     <div className="flex flex-col h-screen  px-10">
       <header className="flex flex-col items-center mt-10 mb-5">
-        <h1 className="text-4xl text-white underline">Welcome, {username}!</h1>
+        <h1 className="text-4xl text-white underline">
+          {getGreeting()}, {username}!
+        </h1>
         {error && <p className="text-lg text-red-500">{error}</p>}
         {quote && <p className="text-3xl text-white">"{quote}"</p>}
         {author && <p className="text-3xl text-white">-{author}</p>}
