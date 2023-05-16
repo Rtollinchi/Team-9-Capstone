@@ -5,7 +5,7 @@ import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
-// import AddSubTask from "../features/addSubTask/AddSubTask";
+
 import Calendar from "../features/calendar/Calendar";
 import Profile from "../features/ProfileImage/profile";
 import SignUpForm from "../features/auth/SignUpForm";
@@ -33,7 +33,7 @@ const AppRoutes = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/home" element={<Home />} />
             <Route path="/newtasks" element={<AddTask />} />
-            {/* <Route path="/addSubTask" element={<AddSubTask />} /> */}
+
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </LoggedInLayout>

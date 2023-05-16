@@ -2,16 +2,16 @@ const router = require("express").Router();
 const {
   models: { User },
 } = require("../db");
-
+const { requireToken } = require("./gatekeepingmiddleware");
 // POST /api/users/upload-image - Endpoint to handle image uploads
-router.post("/upload-image", (req, res, next) => {
+router.put("/upload-image", requireToken, (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
 
   // Get the uploaded file
   const { image } = req.files;
-
+  console.log("image", image);
   // Process the uploaded image
   // Here, you can save the image to a specific directory or perform any other required operations
 
@@ -28,8 +28,9 @@ router.post("/upload-image", (req, res, next) => {
     }
 
     // Get the user ID from the request
-    const { userId } = req.body;
-
+    const user = req.user;
+    const userId = user.id;
+    console.log("userId", userId);
     // Update the user record with the uploaded image filename
     User.findByPk(userId)
       .then((user) => {

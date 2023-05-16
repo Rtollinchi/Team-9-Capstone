@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setProfileImageUrl, selectEmail } from "../slices/profileSlice";
-import updateProfile from "../slices/profileSlice";
+import { updateProfile } from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const dispatch = useDispatch();
 
   const handleFileSelect = (event) => {
@@ -17,31 +16,15 @@ const Profile = () => {
       };
       reader.readAsDataURL(file);
     }
-    const handleSubmit = async (e) => {
-      await e.preventDefault();
-      console.log(parentTaskId);
-
-      if (!parentTaskId) {
-        dispatch({ title, description, priority, userId, dueDate });
-      } else {
-        const parentId = parseInt(parentTaskId);
-        console.log(parentId);
-        dispatch(
-          addTasks({ title, description, priority, userId, parentId, dueDate })
-        );
-      }
-      setTitle("");
-      setDescription("");
-      setPriority("Low");
-      setDueDate(new Date());
-    };
   };
 
   const handleUpload = () => {
-    dispatch(updateProfile(selectedImage));
-    // Logic to upload the selected image goes here
+    console.log(typeof selectedImage);
+    if (selectedImage) {
+      dispatch(updateProfile(selectedImage));
+    }
   };
-  console.log("image", selectedImage);
+
   return (
     <div className="flex flex-col h-screen  px-10">
       <form>

@@ -5,7 +5,7 @@ import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
 import { updateTask } from "../slices/TaskSlice";
-import { selectProfileImageUrl, selectEmail } from "../slices/profileSlice";
+// import { selectProfileImageUrl, selectEmail } from "../slices/profileSlice";
 /**
  * COMPONENT
  */
@@ -18,7 +18,7 @@ const Home = () => {
   const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
   const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
-  const email = useSelector(selectEmail);
+  // const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
   const topLevelTasks = tasks.filter(
