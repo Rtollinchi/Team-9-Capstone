@@ -22,10 +22,15 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport min-h-screen flex justify-start justify-center bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+          <img src="genie.png" alt="Genie Logo" className="h-24 w-24 mx-auto" />
+          <h2 className="mt-6 text-center text-4xl font-extrabold text-white"></h2>
+          <h1 className="mt-2 text-center text-6xl font-extrabold text-white">
+            Todo Genie
+          </h1>
+          <h2 className="mt-6 text-center text-4xl font-extrabold text-white">
             {displayName}
           </h2>
         </div>

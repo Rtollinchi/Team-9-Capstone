@@ -18,7 +18,7 @@ const Navbar = () => {
         <div>
           <Link
             to="/home"
-            title="Home" 
+            title="Home"
             className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
           >
             <img className="text-white w-10 h-10" src="home.png" />
@@ -48,7 +48,7 @@ const Navbar = () => {
             type="button"
             title="Logout"
             onClick={logoutAndRedirectHome}
-            className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform"
+            className="flex items-center justify-center w-20 h-20 mb-10 bg-white rounded-full transform hover:scale-110 transition-transform fixed bottom-0"
           >
             <img className="text-white w-10 h-10" src="exit_480.png" />
           </button>
