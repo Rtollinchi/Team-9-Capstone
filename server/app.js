@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const fileUpload = require("express-fileupload");
 const app = express();
 module.exports = app;
 
@@ -9,7 +10,7 @@ app.use(morgan("dev"));
 
 // body parsing middleware
 app.use(express.json());
-
+app.use(fileUpload());
 // auth and api routes
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
@@ -20,10 +21,10 @@ app.get("/", (req, res) =>
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
-
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
-  if (path.extname(req.path).length) {
+  if (path.extname(req.path).length && req.path !== "/uploadImage") {
     const err = new Error("Not found");
     err.status = 404;
     next(err);

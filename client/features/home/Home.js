@@ -5,7 +5,7 @@ import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
 import { updateTask } from "../slices/TaskSlice";
-import profileSlice from "../slices/profileSlice";
+import { selectProfileImageUrl, fetchUserImage } from "../slices/profileSlice";
 /**
  * COMPONENT
  */
@@ -16,10 +16,13 @@ const Home = () => {
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
   const username = useSelector((state) => state.auth.me.username);
-  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
   const tasks = useSelector(selectTasks);
-  const currentDate = new Date().toLocaleDateString();
+
+  const avatarUrl = useSelector(selectProfileImageUrl);
+  // const email = useSelector(selectEmail);
+  // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
+
   const topLevelTasks = tasks.filter(
     (task) => !task.parentId && !task.isCompleted
   );
@@ -34,16 +37,21 @@ const Home = () => {
     dispatch(updateTask(updatedTask));
   };
   useEffect(() => {
+    dispatch(fetchUserImage());
+  }, [dispatch]);
+  useEffect(() => {
     dispatch(fetchTasks());
 
     const getQuote = async () => {
       const options = {
-        method: 'GET',
-        url: 'https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote',
-        params: { token: 'ipworld.info' },
+        method: "GET",
+        url: "https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote",
+        params: { token: "ipworld.info" },
         headers: {
-          'X-RapidAPI-Key': 'b159225c68msh5fd1fb52aa0baffp1d930bjsn15ba437e2687',
-          'X-RapidAPI-Host': 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com',
+          "X-RapidAPI-Key":
+            "b159225c68msh5fd1fb52aa0baffp1d930bjsn15ba437e2687",
+          "X-RapidAPI-Host":
+            "quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com",
         },
       };
 
@@ -51,7 +59,7 @@ const Home = () => {
         const response = await axios.request(options);
         setQuote(response.data);
         setAuthor(response.data.author);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error(error);
         setError(error.message);
@@ -59,9 +67,7 @@ const Home = () => {
     };
 
     getQuote();
-
   }, [dispatch]);
-
 
   return (
     <div className="flex flex-col h-screen  px-10">
@@ -70,11 +76,12 @@ const Home = () => {
         {error && <p className="text-lg text-red-500">{error}</p>}
         {author && <p className="text-2xl text-white">-{author}</p>}
         {quote && <p className="text-2xl text-white">"{quote.text}"</p>}
-      <img
+        <img
           src={avatarUrl}
           alt="Profile"
           className="w-16 h-16 rounded-full my-4"
         />
+
         <h3 className="text-2xl text-white underline">
           Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
