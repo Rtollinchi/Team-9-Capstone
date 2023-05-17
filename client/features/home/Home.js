@@ -116,10 +116,7 @@ const Home = () => {
     if (currentHour >= 12 && currentHour < 18) {
       return "Good Afternoon";
     }
-    if (currentHour >= 18 && currentHour < 21) {
-      return "Good Evening";
-    }
-    return "Good Night";
+    return "Good Evening";
   };
   return (
     <div className="flex flex-col h-screen  px-10">
@@ -172,6 +169,9 @@ const Home = () => {
 // Extracted TaskItem component
 const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
   const subtasks = getSubtasks(task.id);
+
+  const dueDate = new Date(task.dueDate).toLocaleString();
+
   return (
     <ul className="list-none my-2 p-1">
       <li className="text-lg shadow- rounded flex items-center justify-start mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
@@ -183,6 +183,8 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
         />
 
         <span className="flex-1 text-white">{task.title}</span>
+
+        <span className="ml-4 text-sm text-white">Due: {dueDate}</span>
 
         <button className="text-red-500" onClick={() => handleDelete(task.id)}>
           X
