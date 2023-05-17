@@ -34,6 +34,7 @@ const Calendar = () => {
     }
 
     return {
+      id: task.id,
       title: task.title,
       date: task.dueDate,
       backgroundColor: color,
@@ -47,6 +48,7 @@ const Calendar = () => {
   };
 
   const closeModal = () => {
+
     setSelectedTask(null);
   };
 
@@ -54,7 +56,6 @@ const Calendar = () => {
     const options = { month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
     return new Date(dateString).toLocaleString('en-US', options);
   }
-
 
   const handleEventDrop = async (eventDropInfo) => {
     const event = eventDropInfo.event;
@@ -66,7 +67,8 @@ const Calendar = () => {
       dueDate: start.toISOString(),
     };
 
-    await dispatch(updateTask(updatedTask));
+     await dispatch(updateTask(updatedTask));
+
   };
 
   return (
