@@ -1,12 +1,15 @@
-import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { updateProfile } from "../slices/profileSlice";
+import { fetchUserImage } from "../slices/profileSlice";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   // const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const fileInputRef = useRef(null);
+
+  const profileImageUrl = useSelector((state) => state.profile.profileImageUrl);
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -18,6 +21,9 @@ const Profile = () => {
       reader.readAsDataURL(file);
     }
   };
+  useEffect(() => {
+    dispatch(fetchUserImage());
+  }, [dispatch]);
 
   const handleUpload = () => {
     console.log(selectedImage);
@@ -38,18 +44,20 @@ const Profile = () => {
           accept="image/*"
           onChange={handleFileSelect}
         />
-        {/* <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
 
-          // onChange={handleEmailChange}
-        /> */}
         <button type="button" onClick={handleUpload}>
           Upload
         </button>
       </form>
+      {profileImageUrl && (
+        <div>
+          <img
+            src={profileImageUrl}
+            alt="Profile Image"
+            className="w-16 h-16 rounded-full my-4"
+          />
+        </div>
+      )}
       {selectedImage && (
         <div>
           <img

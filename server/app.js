@@ -21,10 +21,10 @@ app.get("/", (req, res) =>
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
-
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
-  if (path.extname(req.path).length) {
+  if (path.extname(req.path).length && req.path !== "/uploadImage") {
     const err = new Error("Not found");
     err.status = 404;
     next(err);

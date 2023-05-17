@@ -5,7 +5,7 @@ import { fetchTasks } from "../slices/TaskSlice";
 import { selectTasks } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
 import { updateTask } from "../slices/TaskSlice";
-// import { selectProfileImageUrl, selectEmail } from "../slices/profileSlice";
+import { selectProfileImageUrl, fetchUserImage } from "../slices/profileSlice";
 /**
  * COMPONENT
  */
@@ -15,12 +15,14 @@ const Home = () => {
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
-  const username = useSelector((state) => state.auth.me.username);
+  const username = useSelector(selectProfileImageUrl);
   const tasks = useSelector(selectTasks);
-  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
+
+  const avatarUrl = useSelector((state) => state.profile.profileImageUrl);
   // const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
+
   const topLevelTasks = tasks.filter(
     (task) => !task.parentId && !task.isCompleted
   );
@@ -34,6 +36,9 @@ const Home = () => {
     const updatedTask = { ...taskToUpdate, isCompleted: true };
     dispatch(updateTask(updatedTask));
   };
+  useEffect(() => {
+    dispatch(fetchUserImage());
+  }, [dispatch]);
   useEffect(() => {
     dispatch(fetchTasks());
 

@@ -21,6 +21,15 @@ export const updateProfile = createAsyncThunk(
     return response.data;
   }
 );
+export const fetchUserImage = createAsyncThunk("fetchUserImage", async () => {
+  const token = window.localStorage.getItem(TOKEN);
+  const { data } = await axios.get("/api/users", {
+    headers: {
+      authorization: token,
+    },
+  });
+  return data;
+});
 
 const profileSlice = createSlice({
   name: "profile",
@@ -37,6 +46,16 @@ const profileSlice = createSlice({
       })
       .addCase(updateProfile.rejected, (state, action) => {
         console.log("rejected", action);
+      })
+      .addCase(fetchUserImage.pending, (state) => {
+        console.log("pending");
+      })
+      .addCase(fetchUserImage.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.profileImageUrl = action.payload;
+      })
+      .addCase(fetchUserImage.rejected, (state, action) => {
+        console.log("rejected", action);
       });
   },
 });
@@ -45,7 +64,7 @@ const profileSlice = createSlice({
 // export const { selectProfileImageUrl } = (state) => profileSlice.actions;
 // Define the selector to retrieve the profile image
 // export const { setProfileImageUrl, setEmail } = profileSlice.actions;
-// export const selectProfileImageUrl = (state) => state.profile.profileImageUrl;
+export const selectProfileImageUrl = (state) => state.profile.profileImageUrl;
 
 // Export the profile reducer
 export default profileSlice.reducer;
