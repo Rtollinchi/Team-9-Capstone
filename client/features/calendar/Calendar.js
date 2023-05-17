@@ -1,47 +1,56 @@
-import React, { useEffect } from "react";
-import Fullcalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import { useDispatch, useSelector } from "react-redux";
-import { selectTasks, fetchTasks } from "../slices/TaskSlice";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { selectTasks, fetchTasks, updateTask } from '../slices/TaskSlice';
 
 const Calendar = () => {
   const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const tasks = useSelector(selectTasks);
+  const calendarEvents = tasks.map((task) => {
+    return { id: task.id, title: task.title, date: task.dueDate };
 
-  // const [title] = tasks;
-
-  // console.log(tasks)
-
-  let calendarEvents = tasks.map((task) => {
-    //  console.log(`These are the calendar events ${task.title} due on ${task.dueDate}`)
-    return { title: task.title, date: task.dueDate };
   });
 
-  // console.log(calendarEvents)
+  const handleEventDrop = async (eventDropInfo) => {
+
+    const event = eventDropInfo.event;
+
+    const { id, start } = event;
+
+    const updatedTask = {
+      id: id,
+      changes: { dueDate: start.toISOString() },
+    };
+
+     
+     await dispatch(updateTask(updatedTask));
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-full overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900 text-white">
       <div className="grid grid-flow-col justify-around w-full h-full">
-        <Fullcalendar
+        <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView={"dayGridMonth"}
+          initialView="dayGridMonth"
           headerToolbar={{
-            start: "today prev,next", // will normally be on the left. if RTL, will be on the right
-            center: "title",
-            end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
+            start: 'today prev,next',
+            center: 'title',
+            end: 'dayGridMonth,timeGridWeek,timeGridDay',
           }}
-          height={"auto"} // Let FullCalendar auto adjust its height
+          height="auto"
           events={calendarEvents}
           selectable={true}
           editable={true}
-          themeSystem="mint"
+          droppable={true}
+          eventDrop={handleEventDrop}
         />
       </div>
     </div>

@@ -52,8 +52,7 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const task = await Task.findByPk(req.params.id);
-    await task.update(req.body);
-    res.send(task);
+    res.json(await task.update(req.body));
   } catch (err) {
     next(err);
   }
