@@ -6,3 +6,11 @@ body {
   margin: 0;
   padding: 0;
 }
+.fc-col-header-cell-cushion {
+  color: black;
+}
+.modal-portal {
+  position: fixed;
+  z-index: 9999;
+}
+

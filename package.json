@@ -38,10 +38,11 @@
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
     "react-datepicker": "^4.11.0",
+    "react-modal": "^3.16.1",
     "sequelize": "^6.25.3",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
-    "tailwindcss": "^1.0"
+    "tailwindcss": "^1.9.6"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

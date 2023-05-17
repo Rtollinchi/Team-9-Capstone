@@ -107,10 +107,7 @@ const Home = () => {
     if (currentHour >= 12 && currentHour < 18) {
       return "Good Afternoon";
     }
-    if (currentHour >= 18 && currentHour < 21) {
-      return "Good Evening";
-    }
-    return "Good Night";
+    return "Good Evening";
   };
 
 
@@ -159,6 +156,7 @@ const Home = () => {
 // Extracted TaskItem component
 const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
   const subtasks = getSubtasks(task.id);
+  const dueDate = new Date(task.dueDate).toLocaleString();
 
   return (
     <ul className="list-none my-2 p-1">
@@ -170,6 +168,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
           onChange={() => handleUpdate(task.id)}
         />
         <span className="flex-1 text-white">{task.title}</span>
+        <span className="ml-4 text-sm text-white">Due: {dueDate}</span>
       </li>
       {subtasks.map((subtask) => (
         <li
