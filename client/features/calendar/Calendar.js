@@ -1,18 +1,22 @@
+
 import React, { useEffect, useState } from "react";
 import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTasks, fetchTasks } from "../slices/TaskSlice";
+import { selectTasks, fetchTasks, updateTask } from "../slices/TaskSlice";
 import Modal from "react-modal";
+
 
 const Calendar = () => {
   const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
+
 
   const tasks = useSelector(selectTasks);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -36,23 +40,44 @@ const Calendar = () => {
     return {
       title: task.title,
       date: task.dueDate,
-      backgroundColor: color, // Color based on priority
-      extendedProps: { ...task }, // Store all task properties for use in eventClick
+      backgroundColor: color, 
+      extendedProps: { ...task }, 
     };
   });
 
   const handleEventClick = (info) => {
     const { event } = info;
-    setSelectedTask(event.extendedProps); // Set the selected task for modal display
+    setSelectedTask(event.extendedProps); 
   };
 
   const closeModal = () => {
-    setSelectedTask(null); // Clear the selected task when closing the modal
+    setSelectedTask(null); 
+
+  const calendarEvents = tasks.map((task) => {
+    return { id: task.id, title: task.title, date: task.dueDate };
+
+  });
+
+  const handleEventDrop = async (eventDropInfo) => {
+
+    const event = eventDropInfo.event;
+
+    const { id, start } = event;
+
+    const updatedTask = {
+      id: id,
+      dueDate: start.toISOString(),
+    };
+
+     
+     await dispatch(updateTask(updatedTask));
+
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen overflow-auto p-6 mt-5 w-3/4 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900 text-white">
       <div className="grid grid-flow-col justify-around w-full h-full">
+
         <div>
           <Fullcalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -66,14 +91,15 @@ const Calendar = () => {
             events={calendarEvents}
             selectable={true}
             editable={true}
-            themeSystem="mint"
+            droppable={true}
+            eventDrop={handleEventDrop}
             slotLabelFormat={[
               { hour: "numeric", minute: "2-digit", hour12: true },
             ]}
-            eventClick={handleEventClick} // New prop to handle event clicks
+            eventClick={handleEventClick} 
           />
         </div>
-      </div>
+        </div>
 
       {selectedTask && (
         <Modal
