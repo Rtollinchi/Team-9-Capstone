@@ -19,11 +19,11 @@ const Home = () => {
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
   const username = useSelector((state) => state.auth.me.username);
- 
+
   const tasks = useSelector(selectTasks);
 
   const avatarUrl = useSelector(selectProfileImageUrl);
-    console.log("avatarUrl", avatarUrl);
+  console.log("avatarUrl", avatarUrl);
 
   // const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
@@ -188,7 +188,10 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
 
         <span className="ml-4 text-sm text-white">Due: {dueDate}</span>
 
-        <button className="text-red-500" onClick={() => handleDelete(task.id)}>
+        <button
+          className="text-red-500 ml-4"
+          onClick={() => handleDelete(task.id)}
+        >
           X
         </button>
       </li>
@@ -208,7 +211,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
           {subtask.title}
 
           <button
-            className="text-red-500"
+            className="text-red-500 ml-4"
             onClick={() => handleDelete(subtask.id)}
           >
             X
