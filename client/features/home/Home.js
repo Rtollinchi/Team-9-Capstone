@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 // import axios from "axios";
 import {
   fetchTasks,
@@ -20,12 +19,12 @@ const Home = () => {
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
   const username = useSelector((state) => state.auth.me.username);
-  // const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
-  console.log("avatarUrl", avatarUrl);
-
+ 
   const tasks = useSelector(selectTasks);
 
   const avatarUrl = useSelector(selectProfileImageUrl);
+    console.log("avatarUrl", avatarUrl);
+
   // const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
 
@@ -108,6 +107,7 @@ const Home = () => {
     };
     getQuote();
   }, [dispatch]);
+
   const getGreeting = () => {
     const currentHour = new Date().getHours();
     if (currentHour >= 5 && currentHour < 12) {
@@ -118,6 +118,7 @@ const Home = () => {
     }
     return "Good Evening";
   };
+
   return (
     <div className="flex flex-col h-screen  px-10">
       <header className="flex flex-col items-center mt-10 mb-5">
@@ -166,6 +167,7 @@ const Home = () => {
     </div>
   );
 };
+
 // Extracted TaskItem component
 const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
   const subtasks = getSubtasks(task.id);
@@ -216,4 +218,5 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
     </ul>
   );
 };
+
 export default Home;

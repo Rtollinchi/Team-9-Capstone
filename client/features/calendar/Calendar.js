@@ -34,6 +34,7 @@ const Calendar = () => {
     }
 
     return {
+      id: task.id,
       title: task.title,
       date: task.dueDate,
       backgroundColor: color,
