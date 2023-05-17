@@ -15,10 +15,10 @@ const Home = () => {
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
-  const username = useSelector(selectProfileImageUrl);
+  const username = useSelector((state) => state.auth.me.username);
   const tasks = useSelector(selectTasks);
 
-  const avatarUrl = useSelector((state) => state.profile.profileImageUrl);
+  const avatarUrl = useSelector(selectProfileImageUrl);
   // const email = useSelector(selectEmail);
   // const currentDate = new Date().toLocaleDateString();
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
