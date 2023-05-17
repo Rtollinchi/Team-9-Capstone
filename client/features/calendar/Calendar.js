@@ -27,7 +27,7 @@ const Calendar = () => {
 
     const updatedTask = {
       id: id,
-      changes: { dueDate: start.toISOString() },
+      dueDate: start.toISOString(),
     };
 
      

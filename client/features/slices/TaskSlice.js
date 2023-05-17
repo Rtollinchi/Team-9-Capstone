@@ -28,44 +28,44 @@ export const addTasks = createAsyncThunk("addTasks", async (props) => {
   return response.data;
 });
 
-export const updateTask = createAsyncThunk("updateTask",
-  async (updatedTask) => {
-
-    const { id, changes } = updatedTask;
-
-    const token = window.localStorage.getItem(TOKEN);
-
-    console.log('THIS IS THE UPDATED TASK:', updatedTask);
-
-    const { data } = await axios.put(`/api/tasks/${id}`, changes,
-      {
-        headers: {
-          authorization: token,
-        },
-      });
-    return data;
-  }
-);
-
-/*ORIGINAL CODE THAT UPDATES THE PAYLOAD BUT NOT THE CALENDAR */
-
-// export const updateTask = createAsyncThunk(
-//   "updateTask",
+// export const updateTask = createAsyncThunk("updateTask",
 //   async (updatedTask) => {
+
+//     const { id, changes } = updatedTask;
+
 //     const token = window.localStorage.getItem(TOKEN);
-//     console.log(updatedTask);
-//     const response = await axios.put(
-//       `/api/tasks/${updatedTask.id}`,
-//       updatedTask,
+
+//     console.log('THIS IS THE UPDATED TASK:', updatedTask);
+
+//     const { data } = await axios.put(`/api/tasks/${id}`, changes,
 //       {
 //         headers: {
 //           authorization: token,
 //         },
-//       }
-//     );
-//     return response.data;
+//       });
+//     return data;
 //   }
 // );
+
+/*ORIGINAL CODE THAT UPDATES THE PAYLOAD BUT NOT THE CALENDAR */
+
+export const updateTask = createAsyncThunk(
+  "updateTask",
+  async (updatedTask) => {
+    const token = window.localStorage.getItem(TOKEN);
+    console.log(updatedTask);
+    const response = await axios.put(
+      `/api/tasks/${updatedTask.id}`,
+      updatedTask,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    return response.data;
+  }
+);
 
 
 export const deleteTask = createAsyncThunk('task/deleteTask', 
