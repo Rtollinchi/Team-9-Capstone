@@ -28,27 +28,6 @@ export const addTasks = createAsyncThunk("addTasks", async (props) => {
   return response.data;
 });
 
-// export const updateTask = createAsyncThunk("updateTask",
-//   async (updatedTask) => {
-
-//     const { id, changes } = updatedTask;
-
-//     const token = window.localStorage.getItem(TOKEN);
-
-//     console.log('THIS IS THE UPDATED TASK:', updatedTask);
-
-//     const { data } = await axios.put(`/api/tasks/${id}`, changes,
-//       {
-//         headers: {
-//           authorization: token,
-//         },
-//       });
-//     return data;
-//   }
-// );
-
-/*ORIGINAL CODE THAT UPDATES THE PAYLOAD BUT NOT THE CALENDAR */
-
 export const updateTask = createAsyncThunk(
   "updateTask",
   async (updatedTask) => {
@@ -86,6 +65,7 @@ export const deleteTask = createAsyncThunk('task/deleteTask',
 /*
   SLICE
 */
+
 export const taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -143,4 +123,5 @@ export const taskSlice = createSlice({
 
 export const selectTasks = (state) => state.tasks.tasks;
 export const selectOptions = (state) => state.tasks.options;
+
 export default taskSlice.reducer;

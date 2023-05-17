@@ -64,7 +64,6 @@ const Calendar = () => {
       dueDate: start.toISOString(),
     };
 
-     
      await dispatch(updateTask(updatedTask));
 
   };
