@@ -17,8 +17,6 @@ const Calendar = () => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-
-  const tasks = useSelector(selectTasks);
   const [selectedTask, setSelectedTask] = useState(null);
 
   let calendarEvents = tasks.map((task) => {
@@ -38,6 +36,7 @@ const Calendar = () => {
     }
 
     return {
+      id: task.id,
       title: task.title,
       date: task.dueDate,
       backgroundColor: color, 
@@ -52,11 +51,7 @@ const Calendar = () => {
 
   const closeModal = () => {
     setSelectedTask(null); 
-
-  const calendarEvents = tasks.map((task) => {
-    return { id: task.id, title: task.title, date: task.dueDate };
-
-  });
+  }
 
   const handleEventDrop = async (eventDropInfo) => {
 
