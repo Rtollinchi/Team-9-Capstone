@@ -22,10 +22,15 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport min-h-screen flex justify-start justify-center bg-gray-50 py-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+          <img src="genie.png" alt="Genie Logo" className="h-24 w-24 mx-auto" />
+          <h2 className="mt-6 text-center text-4xl font-extrabold text-white"></h2>
+          <h1 className="mt-2 text-center text-6xl font-extrabold text-white">
+            Todo Genie
+          </h1>
+          <h2 className="mt-6 text-center text-4xl font-extrabold text-white">
             {displayName}
           </h2>
         </div>
@@ -44,7 +49,7 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-white rounded-t-md focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-t-md focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white"
                 placeholder="Username"
               />
             </div>
@@ -77,12 +82,16 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {displayName}
             </button>
             <button className="text-white">
-              Already have an account? <Link to="/login" className="text-indigo-600 hover:underline"> Login here </Link>
+              Already have an account?{" "}
+              <Link to="/login" className="text-indigo-600 hover:underline">
+                {" "}
+                Login here{" "}
+              </Link>
             </button>
           </div>
           {error && <div className="text-red-500 mt-2">{error}</div>}

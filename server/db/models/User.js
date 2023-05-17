@@ -25,8 +25,7 @@ const User = db.define("user", {
   },
   avatarUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9a4LOtFfL4JDcvxN6j4FRccYiSNxgbi2BGB67-h1OTg&usqp=CAU&ec=48665699",
+    defaultValue: "default.png",
   },
 });
 
