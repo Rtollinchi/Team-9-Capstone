@@ -35,7 +35,7 @@ const Home = () => {
       (task) => task.parentId === taskId && !task.isCompleted
     );
   };
-  
+
   const handleUpdate = (taskId) => {
     const taskToUpdate = tasks.find((task) => task.id === taskId);
     const updatedTask = { ...taskToUpdate, isCompleted: true };
@@ -46,7 +46,7 @@ const Home = () => {
     dispatch(deleteTask(taskId));
     dispatch(fetchTasks())
   }
-  
+
   useEffect(() => {
     dispatch(fetchUserImage());
   }, [dispatch]);
@@ -136,7 +136,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
   const subtasks = getSubtasks(task.id);
 
   const dueDate = new Date(task.dueDate).toLocaleString();
-  
+
   return (
     <ul className="list-none my-2 p-1">
 
@@ -152,8 +152,8 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
         <span className="flex-1 text-white">{task.title}</span>
 
         <span className="ml-4 text-sm text-white">Due: {dueDate}</span>
-        
-        <button className="text-red-500" onClick={() => handleDelete(task.id)}>
+
+        <button className="text-red-500 ml-4" onClick={() => handleDelete(task.id)}>
           X
         </button>
 
@@ -176,7 +176,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
           {subtask.title}
 
           <button
-            className="text-red-500"
+            className="text-red-500 ml-4"
             onClick={() => handleDelete(subtask.id)}
           >
             X
