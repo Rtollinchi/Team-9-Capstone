@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { deleteTask, fetchTasks } from "../slices/TaskSlice";
-import axios from "axios";
-import { fetchTasks } from "../slices/TaskSlice";
-import { selectTasks } from "../slices/TaskSlice";
+// import axios from "axios";
+import { fetchTasks, selectTasks, updateTask, deleteTask } from "../slices/TaskSlice";
 // import { subTaskSlice } from "../slices/SubTaskSlice";
-import { updateTask } from "../slices/TaskSlice";
 import { selectProfileImageUrl, fetchUserImage } from "../slices/profileSlice";
 /**
  * COMPONENT
@@ -18,7 +15,7 @@ const Home = () => {
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
   const username = useSelector((state) => state.auth.me.username);
-  const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
+  // const avatarUrl = useSelector((state) => state.auth.me.avatarUrl);
   console.log("avatarUrl", avatarUrl);
 
   const tasks = useSelector(selectTasks);
