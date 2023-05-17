@@ -40,14 +40,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchUserImage());
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(fetchTasks());
-
     const getQuote = async () => {
-
       try {
         const storedQuote = JSON.parse(localStorage.getItem("quote"));
-
         if (
           storedQuote &&
           new Date(storedQuote.date).toDateString() ===
@@ -58,11 +56,9 @@ const Home = () => {
         } else {
           const response = await fetch("https://type.fit/api/quotes");
           const data = await response.json();
-
           const randomQuote = data[Math.floor(Math.random() * data.length)];
           setQuote(randomQuote.text);
           setAuthor(randomQuote.author);
-
           localStorage.setItem(
             "quote",
             JSON.stringify({
@@ -72,33 +68,13 @@ const Home = () => {
             })
           );
         }
-
-      const options = {
-        method: "GET",
-        url: "https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote",
-        params: { token: "ipworld.info" },
-        headers: {
-          "X-RapidAPI-Key":
-            "b159225c68msh5fd1fb52aa0baffp1d930bjsn15ba437e2687",
-          "X-RapidAPI-Host":
-            "quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await axios.request(options);
-        setQuote(response.data);
-        setAuthor(response.data.author);
-        console.log(response.data);
       } catch (error) {
         console.error(error);
         setError(error.message);
       }
     };
-
     getQuote();
   }, [dispatch]);
-
   const getGreeting = () => {
     const currentHour = new Date().getHours();
     if (currentHour >= 5 && currentHour < 12) {
@@ -112,8 +88,6 @@ const Home = () => {
     }
     return "Good Night";
   };
-
-
   return (
     <div className="flex flex-col h-screen  px-10">
       <header className="flex flex-col items-center mt-10 mb-5">
@@ -121,23 +95,17 @@ const Home = () => {
           {getGreeting()}, {username}!
         </h1>
         {error && <p className="text-lg text-red-500">{error}</p>}
-
         {quote && <p className="text-3xl text-white">"{quote}"</p>}
         {author && <p className="text-3xl text-white">-{author}</p>}
-
         <img
           src={avatarUrl}
           alt="Profile"
           className="w-16 h-16 rounded-full my-4"
         />
-
         <h3 className="text-3xl text-white underline">
-
-
-        Total Tasks Completed: {totalTasksCompleted.length}
+          Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
       </header>
-
       <main className="overflow-auto p-6 mt-5 w-1/2 max-h-80 mx-auto rounded-md shadow-darker bg-blue-900">
         {topLevelTasks.length > 0 ? (
           topLevelTasks.map((task) => (
@@ -155,11 +123,9 @@ const Home = () => {
     </div>
   );
 };
-
 // Extracted TaskItem component
 const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
   const subtasks = getSubtasks(task.id);
-
   return (
     <ul className="list-none my-2 p-1">
       <li className="text-lg shadow- rounded flex items-center justify-start mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
@@ -188,5 +154,4 @@ const TaskItem = ({ task, getSubtasks, handleUpdate }) => {
     </ul>
   );
 };
-
 export default Home;
