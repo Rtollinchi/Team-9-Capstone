@@ -25,7 +25,10 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center">
+    <div
+      id="background-theme"
+      className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center"
+    >
       {isLoggedIn ? (
         <LoggedInLayout>
           <Routes>
