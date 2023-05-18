@@ -9,12 +9,12 @@ import Modal from "react-modal";
 
 const Calendar = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector(selectTasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
+  const tasks = useSelector(selectTasks);
   const [selectedTask, setSelectedTask] = useState(null);
 
   let calendarEvents = tasks.map((task) => {
@@ -48,14 +48,20 @@ const Calendar = () => {
   };
 
   const closeModal = () => {
-
     setSelectedTask(null);
   };
 
   const formatDate = (dateString) => {
-    const options = { month: '2-digit', day: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
-    return new Date(dateString).toLocaleString('en-US', options);
-  }
+    const options = {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString("en-US", options);
+  };
 
   const handleEventDrop = async (eventDropInfo) => {
     const event = eventDropInfo.event;
@@ -67,8 +73,7 @@ const Calendar = () => {
       dueDate: start.toISOString(),
     };
 
-     await dispatch(updateTask(updatedTask));
-
+    await dispatch(updateTask(updatedTask));
   };
 
   return (
@@ -131,7 +136,9 @@ const Calendar = () => {
           <p className="text-gray-600 mt-2">
             Priority: {selectedTask.priority}
           </p>
-          <p className="text-gray-600 mt-2">Due Date: {formatDate(selectedTask.dueDate)}</p>
+          <p className="text-gray-600 mt-2">
+            Due Date: {formatDate(selectedTask.dueDate)}
+          </p>
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-4 rounded"
             onClick={closeModal}
