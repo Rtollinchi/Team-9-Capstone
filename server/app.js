@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
-  if (path.extname(req.path).length && req.path !== "/uploadImage") {
+  if (path.extname(req.path).length) {
     const err = new Error("Not found");
     err.status = 404;
     next(err);
@@ -43,4 +43,29 @@ app.use((err, req, res, next) => {
   console.error(err);
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || "Internal server error.");
+});
+app.use(express.static("./public"));
+
+app.get("/", (req, res) => res.render("index"));
+
+app.post("/upload", (req, res) => {
+  // eslint-disable-next-line no-undef
+  upload(req, res, (err) => {
+    if (err) {
+      res.render("index", {
+        msg: err,
+      });
+    } else {
+      if (req.file == undefined) {
+        res.render("index", {
+          msg: "Error: No File Selected!",
+        });
+      } else {
+        res.render("index", {
+          msg: "File Uploaded!",
+          file: `uploads/${req.file.filename}`,
+        });
+      }
+    }
+  });
 });
