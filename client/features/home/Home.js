@@ -120,25 +120,31 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen  px-10">
-      <header className="flex flex-col items-center mt-10 mb-5">
-        <h1 className="text-4xl text-white underline">
+    <div className="flex flex-col h-screen  md:px-10">
+      <header className="flex flex-col items-center mt-10 mb-5 m-1">
+        <h1 className="md:text-4xl text-lg text-white underline text-center">
           {getGreeting()}, {username}!
         </h1>
-        {error && <p className="text-lg text-red-500">{error}</p>}
-        {quote && <p className="text-3xl text-white">"{quote}"</p>}
-        {author && <p className="text-3xl text-white">-{author}</p>}
+        {error && (
+          <p className="md:text-lg text-red-500 text-center">{error}</p>
+        )}
+        {quote && (
+          <p className="md:text-3xl text-white text-center">"{quote}"</p>
+        )}
+        {author && (
+          <p className="md:text-3xl text-white text-center">-{author}</p>
+        )}
         <img
           src={avatarUrl}
           alt="Profile"
           className="w-16 h-16 rounded-full my-4"
         />
-        <h3 className="text-3xl text-white underline">
+        <h3 className="md:text-3xl text-lg text-white underline text-center m-1">
           Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
       </header>
-      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-80 mx-auto rounded-md shadow-darker bg-blue-900">
-        <div className="flex items-center justify-between mb-2">
+      <main className="overflow-auto md:mt-5 md:w-1/2 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-blue-900">
+        <div className="flex items-center justify-between mb-2 m-1">
           <div className="flex flex-grow">
             <input
               type="text"

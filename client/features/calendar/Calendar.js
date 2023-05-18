@@ -77,8 +77,8 @@ const Calendar = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen overflow-auto p-6 mt-5 w-3/4 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900 text-white">
-      <div className="grid grid-flow-col justify-around w-full h-full">
+    <div className="flex flex-col items-center justify-center h-screen overflow-auto md:p-6 m-1 md:mt-5 md:w-3/4 md:max-h-81 md:mx-auto rounded-md shadow-darker bg-blue-900 text-white">
+      <div className="grid grid-flow-col justify-around  h-full">
         <div>
           <Fullcalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
