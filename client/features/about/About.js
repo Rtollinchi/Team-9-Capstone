@@ -7,29 +7,29 @@ const About = () => {
       <h1 className="text-4xl text-white underline align m-10">About Page</h1>
       <div className="m-5 grid gap-5 lg:grid-cols-4 md:grid-cols-2">
         <Link
-          to=""
+          to="https://www.linkedin.com/in/rubintollinchi/"
           title="Profile"
           className="flex flex-col items-center justify-center w-40 h-40 mb-10 rounded-full transform hover:scale-110 transition-transform"
         >
           <img className="w-30 h-30" src="user.png" alt="User Icon" />
-          <h3>Rubin Tollinchi</h3>
+          <h3 className="text-white">Rubin Tollinchi</h3>
         </Link>
 
         <Link
-          to=""
+          to="https://www.linkedin.com/in/rodney-johnson-dwight/"
           title="Profile"
           className="flex flex-col items-center justify-center w-40 h-40 mb-10 rounded-full transform hover:scale-110 transition-transform"
         >
           <img className="w-30 h-30" src="user.png" alt="User Icon" />
-          <h3>Rodney Johnson</h3>
+          <h3 className="text-white">Rodney Johnson</h3>
         </Link>
         <Link
-          to=""
+          to="https://www.linkedin.com/in/emmanuel-lucero/"
           title="Profile"
           className="flex flex-col items-center justify-center w-40 h-40 mb-10 rounded-full transform hover:scale-110 transition-transform"
         >
           <img className="w-30 h-30" src="user.png" alt="User Icon" />
-          <h3>Emmanuel Lucero</h3>
+          <h3 className="text-white">Emmanuel Lucero</h3>
         </Link>
         <Link
           to="https://www.linkedin.com/in/nicholas-treasure/"
@@ -37,7 +37,7 @@ const About = () => {
           className="flex flex-col items-center justify-center w-40 h-40 mb-10 rounded-full transform hover:scale-110 transition-transform"
         >
           <img className="w-30 h-30" src="user.png" alt="User Icon" />
-          <h3>Nicholas Treasure</h3>
+          <h3 className="text-white">Nicholas Treasure</h3>
         </Link>
       </div>
 
