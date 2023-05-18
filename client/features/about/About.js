@@ -32,7 +32,7 @@ const About = () => {
           <h3>Emmanuel Lucero</h3>
         </Link>
         <Link
-          to=""
+          to="https://www.linkedin.com/in/nicholas-treasure/"
           title="Profile"
           className="flex flex-col items-center justify-center w-40 h-40 mb-10 rounded-full transform hover:scale-110 transition-transform"
         >
