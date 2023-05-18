@@ -64,14 +64,14 @@ const AddTask = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col h-screen px-10">
+    <div className="flex flex-col h-screen md:px-10">
       <header className="flex justify-center items-center mt-10 mb-5">
         <h1 className="text-4xl text-white underline">
           Add A Task Or A Subtask
         </h1>
       </header>
 
-      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
+      <main className="overflow-auto md:w-1/2 md:mx-auto max-h-81 m-1 md:justify-center rounded-md shadow-darker bg-blue-900">
         <form
           id="task-form"
           onSubmit={handleSubmit}
