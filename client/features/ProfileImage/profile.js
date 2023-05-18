@@ -21,7 +21,13 @@ const Profile = () => {
       dispatch(updateProfile(file));
     }
   };
-
+  //theme changing buttons
+  const changeGradient = (newClassName) => {
+    const backgroundDiv = document.getElementById("background-theme");
+    if (backgroundDiv) {
+      backgroundDiv.className = newClassName;
+    }
+  };
   return (
     <div className="flex flex-col min-h-screen px-10">
       <header className="flex justify-center items-center mt-10 mb-5">
@@ -103,6 +109,72 @@ const Profile = () => {
           </div>
         )}
       </main>
+      <div>
+        <div
+          id="background-theme"
+          className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center"
+        >
+          {/* Content */}
+        </div>
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() =>
+              changeGradient("bg-gradient-to-r from-red-600 to-yellow-400")
+            }
+            className="bg-gradient-to-r from-red-600 to-yellow-400 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Gradient 1
+          </button>
+          <button
+            onClick={() =>
+              changeGradient("bg-gradient-to-r from-blue-600 to-green-400")
+            }
+            className="bg-gradient-to-r from-blue-600 to-green-400 hover:from-blue-500 hover:to-green-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Gradient 2
+          </button>
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-br from-lime-600 via-gray-400 to-green-900"
+              )
+            }
+            className="bg-gradient-to-br from-lime-600 via-gray-400 to-green-900 hover:from-lime-500 hover:to-green-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Gradient 3
+          </button>
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-br from-gray-800 via-gray-800 to-rose-900"
+              )
+            }
+            className="bg-gradient-to-br from-purple-500 via-pink-700 to-rose-900 hover:from-purple-500 hover:to-rose-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Gradient 4
+          </button>
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-br from-gray-800 via-gray-700 to-sky-600"
+              )
+            }
+            className="bg-gray-700 hover:to-grey-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Gradient 5
+          </button>
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-br from-gray-800 via-gray-700 to-lime-700"
+              )
+            }
+            className="bg-gray-700 hover:to-grey-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            Grey-Lime
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
