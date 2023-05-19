@@ -41,7 +41,7 @@ const About = () => {
         </Link>
       </div>
 
-      <div className="md:w-1/2 h-screen  rounded-md shadow-darker bg-blue-900 overflow-y-auto m-1 ">
+      <div className="md:w-1/2 h-screen  rounded-md shadow-darker bg-gray-800 overflow-y-auto m-1 ">
         <div className="flex items-center justify-between mb-2 items-center m-5">
           <span className="flex items-center justify-center w-10 h-10 bg-white rounded-full transform hover:scale-110 transition-transform flex-shrink-0">
             <img

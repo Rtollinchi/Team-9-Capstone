@@ -34,7 +34,7 @@ const Profile = () => {
         <h1 className="text-4xl text-white underline">Profile Management</h1>
       </header>
 
-      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
+      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-gray-800">
         <div className="flex justify-center">
           {profileImageUrl && (
             <img
@@ -112,66 +112,77 @@ const Profile = () => {
       <div>
         <div
           id="background-theme"
-          className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center"
+          className="h-screen-viewport w-screen-viewport m-10"
         >
           {/* Content */}
         </div>
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 items-center m-5 grid gap-5 lg:grid-cols-4 md:grid-cols-2 ">
           <button
             onClick={() =>
               changeGradient("bg-gradient-to-r from-red-600 to-yellow-400")
             }
             className="bg-gradient-to-r from-red-600 to-yellow-400 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Gradient 1
+            DEFAULT
           </button>
           <button
             onClick={() =>
-              changeGradient("bg-gradient-to-r from-blue-600 to-green-400")
+              changeGradient("bg-gradient-to-l from-yellow-600 to-red-600")
             }
-            className="bg-gradient-to-r from-blue-600 to-green-400 hover:from-blue-500 hover:to-green-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-l from-yellow-600 to-red-600 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Gradient 2
+            BURNING SUNRISE
+          </button>
+
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-t from-blue-700 via-blue-800 to-gray-900"
+              )
+            }
+            className="bg-gradient-to-t from-blue-700 via-blue-800 to-gray-900 hover:from-gray-900 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            MIDNIGHT
           </button>
           <button
             onClick={() =>
               changeGradient(
-                "bg-gradient-to-br from-lime-600 via-gray-400 to-green-900"
+                "bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r"
               )
             }
-            className="bg-gradient-to-br from-lime-600 via-gray-400 to-green-900 hover:from-lime-500 hover:to-green-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r hover:from-gray-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Gradient 3
+            SPACE
           </button>
           <button
             onClick={() =>
               changeGradient(
-                "bg-gradient-to-br from-gray-800 via-gray-800 to-rose-900"
+                "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"
               )
             }
-            className="bg-gradient-to-br from-purple-500 via-pink-700 to-rose-900 hover:from-purple-500 hover:to-rose-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600 hover:from-violet-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Gradient 4
+            SALEM
           </button>
           <button
             onClick={() =>
               changeGradient(
-                "bg-gradient-to-br from-gray-800 via-gray-700 to-sky-600"
+                "bg-gradient-to-b from-gray-900 via-green-800 to-green-600"
               )
             }
-            className="bg-gray-700 hover:to-grey-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-green-800 to-green-600 hover:from-green-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Gradient 5
+            GREEN
           </button>
           <button
             onClick={() =>
               changeGradient(
-                "bg-gradient-to-br from-gray-800 via-gray-700 to-lime-700"
+                "bg-gradient-to-b from-gray-800 via-orange-800 to-orange-500"
               )
             }
-            className="bg-gray-700 hover:to-grey-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-orange-800 to-orange-500 hover:from-orange-500 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            Grey-Lime
+            new gradient
           </button>
         </div>
       </div>

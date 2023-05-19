@@ -12,7 +12,7 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    <div className="flex flex-col items-center justify-between h-full bg-blue-900 md:p-4">
+    <div className="flex flex-col items-center justify-between h-full bg-gray-800 md:p-4">
       <nav>
         {isLoggedIn ? (
           <div>

@@ -143,7 +143,7 @@ const Home = () => {
           Total Tasks Completed: {totalTasksCompleted.length}
         </h3>
       </header>
-      <main className="overflow-auto md:mt-5 md:w-1/2 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-blue-900">
+      <main className="overflow-auto md:mt-5 md:w-1/2 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-gray-800">
         <div className="flex items-center justify-between mb-2 m-1">
           <div className="flex flex-grow">
             <input
