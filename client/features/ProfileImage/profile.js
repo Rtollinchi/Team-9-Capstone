@@ -29,18 +29,20 @@ const Profile = () => {
     }
   };
   return (
-    <div className="flex flex-col min-h-screen px-10">
+    <div className="flex flex-col min-h-screen md:px-10">
       <header className="flex justify-center items-center mt-10 mb-5">
-        <h1 className="text-4xl text-white underline">Profile Management</h1>
+        <h1 className="text-4xl text-white text-center underline">
+          Profile Management
+        </h1>
       </header>
 
-      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-gray-800">
+      <main className="overflow-auto md:p-6 md:mt-5 md:w-1/2 m-1 max-h-81 md:mx-auto rounded-md shadow-darker bg-gray-800">
         <div className="flex justify-center">
           {profileImageUrl && (
             <img
               src={profileImageUrl}
               alt="Profile Image"
-              className="w-16 h-16 rounded-full mb-4"
+              className="w-20 h-20 rounded-full m-5"
             />
           )}
         </div>
@@ -60,7 +62,7 @@ const Profile = () => {
               ref={fileInputRef}
               accept="image/*"
               onChange={handleFileSelect}
-              className="bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+              className="bg-gray-600 mt-1 block w-full text-white rounded-md border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
           </div>
@@ -73,7 +75,7 @@ const Profile = () => {
               type="text"
               id="name"
               name="name"
-              className="bg-blue-900 rounded-md border-b-2 border-white p-2 outline-none"
+              className="bg-gray-600 rounded-md border-b-2 border-white p-2 outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
 
@@ -84,14 +86,14 @@ const Profile = () => {
               type="number"
               id="age"
               name="age"
-              className="bg-blue-900 rounded-md border-b-2 border-white p-2 outline-none"
+              className="bg-gray-600 rounded-md border-b-2 border-white p-2 outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
 
             <button
               type="button"
               onClick={handleUpload}
-              className="bg-blue-900 text-white font-bold py-2 px-4 rounded"
+              className="bg-gray-600 text-white font-bold py-2 px-4 rounded"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             >
               Upload
@@ -127,9 +129,9 @@ const Profile = () => {
           </button>
           <button
             onClick={() =>
-              changeGradient("bg-gradient-to-l from-yellow-600 to-red-600")
+              changeGradient("bg-gradient-to-t from-yellow-600 to-red-600")
             }
-            className="bg-gradient-to-l from-yellow-600 to-red-600 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-t from-yellow-600 to-red-600 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
             BURNING SUNRISE
           </button>
@@ -182,7 +184,17 @@ const Profile = () => {
             }
             className="bg-gradient-to-b from-gray-900 via-orange-800 to-orange-500 hover:from-orange-500 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
           >
-            new gradient
+            ORANGE
+          </button>
+          <button
+            onClick={() =>
+              changeGradient(
+                "bg-gradient-to-b from-gray-800 via-red-800 to-red-600"
+              )
+            }
+            className="bg-gradient-to-b from-gray-800 via-red-800 to-red-600 hover:from-red-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+          >
+            RED
           </button>
         </div>
       </div>
