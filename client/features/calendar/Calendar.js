@@ -17,30 +17,32 @@ const Calendar = () => {
   const tasks = useSelector(selectTasks);
   const [selectedTask, setSelectedTask] = useState(null);
 
-  let calendarEvents = tasks.map((task) => {
-    let color;
-    switch (task.priority) {
-      case "Low":
-        color = "green";
-        break;
-      case "Medium":
-        color = "yellow";
-        break;
-      case "High":
-        color = "red";
-        break;
-      default:
-        color = "white"; // Default color if no match
-    }
+  let calendarEvents = tasks
+    .filter((task) => !task.isCompleted)
+    .map((task) => {
+      let color;
+      switch (task.priority) {
+        case "Low":
+          color = "green";
+          break;
+        case "Medium":
+          color = "yellow";
+          break;
+        case "High":
+          color = "red";
+          break;
+        default:
+          color = "white"; // Default color if no match
+      }
 
-    return {
-      id: task.id,
-      title: task.title,
-      date: task.dueDate,
-      backgroundColor: color,
-      extendedProps: { ...task },
-    };
-  });
+      return {
+        id: task.id,
+        title: task.title,
+        date: task.dueDate,
+        backgroundColor: color,
+        extendedProps: { ...task },
+      };
+    });
 
   const handleEventClick = (info) => {
     const { event } = info;
@@ -71,6 +73,7 @@ const Calendar = () => {
     const updatedTask = {
       id: id,
       dueDate: start.toISOString(),
+      isCompleted: event.allDay,
     };
 
     await dispatch(updateTask(updatedTask));

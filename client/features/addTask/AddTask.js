@@ -8,27 +8,22 @@ import { selectTasks } from "../slices/TaskSlice";
 
 function formatDate(date) {
   let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear(),
-      hours = '' + d.getHours(),
-      minutes = '' + d.getMinutes();
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear(),
+    hours = "" + d.getHours(),
+    minutes = "" + d.getMinutes();
 
-  if (month.length < 2)
-      month = '0' + month;
-  if (day.length < 2)
-      day = '0' + day;
-  if (hours.length < 2)
-      hours = '0' + hours;
-  if (minutes.length < 2)
-      minutes = '0' + minutes;
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  if (hours.length < 2) hours = "0" + hours;
+  if (minutes.length < 2) minutes = "0" + minutes;
 
-  return [month, day, year].join('/') + ' ' + [hours, minutes].join(':');
+  return [month, day, year].join("/") + " " + [hours, minutes].join(":");
 }
 
 const AddTask = () => {
   const dispatch = useDispatch("");
-
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -106,13 +101,13 @@ const AddTask = () => {
               Due date{" "}
             </label>
             <input
-            type="datetime-local"
-            name="date"
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-            className="bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
-            style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
-          />
+              type="datetime-local"
+              name="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              className="bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
+              style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
+            />
           </div>
 
           <div>

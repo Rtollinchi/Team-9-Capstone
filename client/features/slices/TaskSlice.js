@@ -46,21 +46,20 @@ export const updateTask = createAsyncThunk(
   }
 );
 
-
-export const deleteTask = createAsyncThunk('task/deleteTask', 
+export const deleteTask = createAsyncThunk(
+  "task/deleteTask",
   async (taskId) => {
+    const token = window.localStorage.getItem(TOKEN);
 
-  const token = window.localStorage.getItem(TOKEN);
-
-  const { data } = await axios.delete(`/api/tasks/${taskId}`, {
+    const { data } = await axios.delete(`/api/tasks/${taskId}`, {
       headers: {
         authorization: token,
       },
     });
 
     return data;
-
-});
+  }
+);
 
 /*
   SLICE
@@ -117,7 +116,7 @@ export const taskSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         return {};
-      })
+      });
   },
 });
 

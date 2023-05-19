@@ -35,16 +35,16 @@ async function seed() {
   // Creating Tasks
 
   const tasks = await Promise.all([
-    Task.create({
-      parentId: 1,
-      userId: 1,
-      title: "Do the dishes",
-      description: "Wash the dishes and put them away",
-      scheduledTime: "2023-06-01 12:00:00",
-      dueDate: "2023-06-01 12:00:00",
-      priority: "High",
-      isCompleted: false,
-    }),
+    // Task.create({
+    //   parentId: 1,
+    //   userId: 1,
+    //   title: "Do the dishes",
+    //   description: "Wash the dishes and put them away",
+    //   scheduledTime: "2023-06-01 12:00:00",
+    //   dueDate: "2023-06-01 12:00:00",
+    //   priority: "High",
+    //   isCompleted: false,
+    // }),
     Task.create({
       userId: 1,
       title: "clean pool",
@@ -131,15 +131,15 @@ async function seed() {
   // Creating SubTasks
 
   const subTasks = await Promise.all([
-    Task.create({
-      userId: 1,
-      parentId: 1, // Reference to the parent task ID
-      title: "Dry the dishes",
-      description: "Dry the dishes and put them away",
-      dueDate: "2023-05-20 12:00:00",
-      priority: "Medium",
-      isCompleted: false,
-    }),
+    // Task.create({
+    //   userId: 1,
+    //   parentId: 1, // Reference to the parent task ID
+    //   title: "Dry the dishes",
+    //   description: "Dry the dishes and put them away",
+    //   dueDate: "2023-05-20 12:00:00",
+    //   priority: "Medium",
+    //   isCompleted: false,
+    // }),
     Task.create({
       userId: 2,
 
