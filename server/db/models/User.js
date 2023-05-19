@@ -2,8 +2,9 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const Task = require("./Task");
 const SALT_ROUNDS = 5;
+const currentDate = new Date();
 
 const User = db.define("user", {
   id: {
@@ -27,6 +28,46 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     defaultValue: "default.png",
   },
+});
+
+User.afterCreate((user) => {
+  Task.create({
+    userId: user.id,
+    title: "Go create a new task",
+    description:
+      "Using the + icon on the left side of the screen. This is the link to creating new tasks and sub tasks.",
+    scheduledTime: `${currentDate}`,
+    dueDate: `${currentDate}`,
+    priority: "High",
+    isCompleted: false,
+  });
+  Task.create({
+    userId: user.id,
+    title: "Go view the calendar to show your new tasks.",
+    description: "Click the calendar icon on the left side of the screen.",
+    scheduledTime: `${currentDate}`,
+    dueDate: `${currentDate}`,
+    priority: "High",
+    isCompleted: false,
+  }),
+    Task.create({
+      userId: user.id,
+      title: "Go checkout your profile page",
+      description: "Click the profile icon on the left side of the screen.",
+      scheduledTime: `${currentDate}`,
+      dueDate: `${currentDate}`,
+      priority: "High",
+      isCompleted: false,
+    }),
+    Task.create({
+      userId: user.id,
+      title: "Finally go checkout the info page",
+      description: "Click the ? icon on the left side of the screen.",
+      scheduledTime: `${currentDate}`,
+      dueDate: `${currentDate}`,
+      priority: "High",
+      isCompleted: false,
+    });
 });
 
 module.exports = User;
