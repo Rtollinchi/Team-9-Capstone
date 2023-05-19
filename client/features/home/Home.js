@@ -18,6 +18,7 @@ const Home = () => {
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
   const [error, setError] = useState(null);
+
   const username = useSelector((state) => state.auth.me.username);
 
   const tasks = useSelector(selectTasks);
@@ -40,9 +41,11 @@ const Home = () => {
     );
   };
 
-  const handleUpdate = (taskId) => {
+  const handleUpdate = (taskId, isCompleted) => {
     const taskToUpdate = tasks.find((task) => task.id === taskId);
-    const updatedTask = { ...taskToUpdate, isCompleted: true };
+
+    const updatedTask = { ...taskToUpdate, isCompleted: isCompleted };
+
     dispatch(updateTask(updatedTask));
   };
 
@@ -50,6 +53,7 @@ const Home = () => {
     dispatch(deleteTask(taskId));
     dispatch(fetchTasks());
   };
+
   const [filteredTasks, setFilteredTasks] = useState(topLevelTasks);
   useEffect(() => {
     const searchTasks = (tasks, searchTerm) => {
@@ -140,7 +144,7 @@ const Home = () => {
           className="w-16 h-16 rounded-full my-4"
         />
         <h3 className="md:text-3xl text-lg text-white underline text-center m-1">
-          Total Tasks Completed: {totalTasksCompleted.length}
+          Tasks Completed: {totalTasksCompleted.length}/{tasks.length}
         </h3>
       </header>
       <main className="overflow-auto md:mt-5 md:w-1/2 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-gray-800">
@@ -187,7 +191,8 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
           type="checkbox"
           className="form-checkbox h-4 w-4 rounded bg-gray-200 mr-4 shadow-darker"
           checked={task.isCompleted}
-          onChange={() => handleUpdate(task.id)}
+          // onChange={() => handleUpdate(task.id)}
+          onChange={() => handleUpdate(task.id, !task.isCompleted)}
         />
 
         <span className="flex-1 text-white">{task.title}</span>
@@ -211,7 +216,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
             type="checkbox"
             className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200 mr-2"
             checked={subtask.isCompleted}
-            onChange={() => handleUpdate(subtask.id)}
+            onChange={() => handleUpdate(subtask.id, !subtask.isCompleted)} // Pass the updated handleUpdate function
           />
 
           {subtask.title}
