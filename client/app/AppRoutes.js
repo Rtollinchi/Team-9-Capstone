@@ -5,7 +5,7 @@ import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import { me } from "./store";
 import AddTask from "../features/addTask/AddTask";
-
+import About from "../features/about/About";
 import Calendar from "../features/calendar/Calendar";
 import Profile from "../features/ProfileImage/profile";
 import SignUpForm from "../features/auth/SignUpForm";
@@ -25,7 +25,10 @@ const AppRoutes = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center">
+    <div
+      id="background-theme"
+      className="bg-gradient-to-r from-red-600 to-yellow-400 h-screen-viewport w-screen-viewport items-center"
+    >
       {isLoggedIn ? (
         <LoggedInLayout>
           <Routes>
@@ -33,7 +36,7 @@ const AppRoutes = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/home" element={<Home />} />
             <Route path="/newtasks" element={<AddTask />} />
-
+            <Route path="/about" element={<About />} />
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </LoggedInLayout>

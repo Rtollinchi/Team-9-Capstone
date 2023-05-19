@@ -64,14 +64,14 @@ const AddTask = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen px-10">
+    <div className="flex flex-col h-screen md:px-10">
       <header className="flex justify-center items-center mt-10 mb-5">
-        <h1 className="text-4xl text-white underline">
+        <h1 className="text-4xl text-white underline text-center">
           Add A Task Or A Subtask
         </h1>
       </header>
 
-      <main className="overflow-auto p-6 mt-5 w-1/2 max-h-81 mx-auto rounded-md shadow-darker bg-blue-900">
+      <main className="overflow-auto md:p-6 md:w-1/2 md:mx-auto max-h-81 m-1 md:justify-center rounded-md shadow-darker bg-gray-800">
         <form
           id="task-form"
           onSubmit={handleSubmit}
@@ -88,7 +88,7 @@ const AddTask = () => {
               name="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+              className="bg-gray-600 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
           </div>
@@ -105,7 +105,7 @@ const AddTask = () => {
               name="date"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
-              className="bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
+              className="bg-gray-600 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
           </div>
@@ -121,7 +121,7 @@ const AddTask = () => {
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="text=lg bg-blue-900 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
+              className="text=lg bg-gray-600 mt-1 block w-full rounded-md shadow-darker border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             />
           </div>
@@ -138,7 +138,7 @@ const AddTask = () => {
               name="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="text-lg bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+              className="text-lg bg-gray-600 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             >
               {priorityOptions.map((option) => (
@@ -160,7 +160,7 @@ const AddTask = () => {
               name="Task List"
               value={tasks.id}
               onChange={(e) => setParentTaskId(e.target.value)}
-              className="text-lg bg-blue-900 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
+              className="text-lg bg-gray-600 mt-1 block w-full rounded-md border-b-2 border-white outline-none"
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             >
               <option>Not a subtask</option>
