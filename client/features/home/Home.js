@@ -137,7 +137,7 @@ const Home = () => {
         <img
           src={avatarUrl}
           alt="Profile"
-          className="w-16 h-16 rounded-full my-4"
+          className="w-24 h-24 rounded-full my-4"
         />
         <h3 className="md:text-3xl text-lg text-white underline text-center m-1">
           Total Tasks Completed: {totalTasksCompleted.length}
