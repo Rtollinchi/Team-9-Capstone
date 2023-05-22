@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
+import CircularProgressBar from "../progressBar/CircularProgressBar";
 import {
   fetchTasks,
   selectTasks,
   updateTask,
   deleteTask,
 } from "../slices/TaskSlice";
-// import { subTaskSlice } from "../slices/SubTaskSlice";
 import { selectProfileImageUrl, fetchUserImage } from "../slices/profileSlice";
+
 /**
  * COMPONENT
  */
@@ -20,16 +20,13 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   const username = useSelector((state) => state.auth.me.username);
-
   const tasks = useSelector(selectTasks);
-
   const avatarUrl = useSelector(selectProfileImageUrl);
   console.log("avatarUrl", avatarUrl);
 
-  // const email = useSelector(selectEmail);
-  // const currentDate = new Date().toLocaleDateString();
-
-  const totalTasksCompleted = tasks.filter((task) => task.isCompleted === true);
+  const totalTasks = tasks.length;
+  const totalTasksCompleted = tasks.filter((task) => task.isCompleted).length;
+  const percentage = totalTasks === 0 ? 0 : Math.round((totalTasksCompleted / totalTasks) * 100);
 
   const topLevelTasks = tasks.filter(
     (task) => !task.parentId && !task.isCompleted
@@ -43,9 +40,7 @@ const Home = () => {
 
   const handleUpdate = (taskId, isCompleted) => {
     const taskToUpdate = tasks.find((task) => task.id === taskId);
-
     const updatedTask = { ...taskToUpdate, isCompleted: isCompleted };
-
     dispatch(updateTask(updatedTask));
   };
 
@@ -125,7 +120,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col h-screen  md:px-10">
-      <header className="flex flex-col items-center mt-10 mb-5 m-1">
+    <header className="flex flex-col items-center mt-10 mb-5 m-1">
         <h1 className="md:text-4xl text-lg text-white underline text-center">
           {getGreeting()}, {username}!
         </h1>
@@ -144,8 +139,17 @@ const Home = () => {
           className="w-16 h-16 rounded-full my-4"
         />
         <h3 className="md:text-3xl text-lg text-white underline text-center m-1">
-          Tasks Completed: {totalTasksCompleted.length}/{tasks.length}
+          Tasks Completed: {totalTasksCompleted}/{totalTasks}
         </h3>
+        <span className="flex">
+        <CircularProgressBar
+          percentage={percentage}
+          strokeWidth={5}
+          trailColor="#333"
+          strokeColor="#999"
+          textColor="#fff"
+        />
+        </span>
       </header>
       <main className="overflow-auto md:mt-5 md:w-1/2 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-gray-800">
         <div className="flex items-center justify-between mb-2 m-1">
@@ -186,16 +190,30 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
 
   const dueDate = new Date(task.dueDate).toLocaleString();
 
+  let dotColor;
+  switch (task.priority) {
+    case "Low":
+      dotColor = "green";
+      break;
+    case "Medium":
+      dotColor = "yellow";
+      break;
+    case "High":
+      dotColor = "red";
+  }
+
   return (
+    <div className="flex items-center">
     <ul className="list-none my-2 p-1">
       <li className="text-lg shadow- rounded flex items-center justify-start mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
         <div>
           <div className="flex justify-between items-center">
+          <div className={`w-4 h-4 rounded-full mr-4 ${dotColor}`} />
             <input
               type="checkbox"
               className="form-checkbox h-4 w-4 rounded bg-gray-200 mr-4 shadow-darker"
               checked={task.isCompleted}
-              onChange={() => handleUpdate(task.id)}
+              onChange={() => handleUpdate(task.id, !task.isCompleted)}
             />
 
             <span className="flex-1 text-white">{task.title}</span>
@@ -255,6 +273,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
         ))}
       </li>
     </ul>
+    </div>
   );
 };
 
