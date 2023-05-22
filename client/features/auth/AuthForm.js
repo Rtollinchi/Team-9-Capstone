@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { authenticate } from "../../app/store";
+import { UserIcon, LockClosedIcon } from "@heroicons/react/outline";
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -40,36 +41,37 @@ const AuthForm = ({ name, displayName }) => {
         >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="username" className="sr-only">
-                Username
-              </label>
+            <div className="flex items-center border border-gray rounded-t-md bg-white">
+              <UserIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500"
+              />
               <input
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-t-md focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
                 placeholder="Username"
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
+            <div className="flex items-center border border-gray rounded-b-md bg-white">
+              <LockClosedIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500 "
+              />
               <input
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:z-10 sm:text-sm bg-white outline-none"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white outline-none"
                 placeholder="Password"
               />
             </div>
           </div>
-
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-gray text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-600 focus:outline-none  focus:ring-indigo-500"
             >
               {displayName}
             </button>

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { authenticate } from "../../app/store";
+import { UserIcon, LockClosedIcon, MailIcon } from "@heroicons/react/outline";
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -41,39 +42,42 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
         >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="username" className="sr-only">
-                Username
-              </label>
+            <div className="flex items-center border border-gray rounded-t-md bg-white">
+              <UserIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500"
+              />
               <input
                 name="username"
                 type="text"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray rounded-t-md focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
                 placeholder="Username"
               />
             </div>
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
+            <div className="flex items-center border border-gray bg-white">
+              <MailIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500"
+              />
               <input
                 name="email"
                 type="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 focus:outline-none focus:ring-indigo-500 focus:z-10 sm:text-sm bg-white "
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
                 placeholder="Email@mail.com"
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
+            <div className="flex items-center border border-gray rounded-b-md bg-white">
+              <LockClosedIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500 "
+              />
               <input
                 name="password"
                 type="password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray placeholder-gray text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500  focus:z-10 sm:text-sm bg-white "
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
                 placeholder="Password"
               />
             </div>
