@@ -193,8 +193,8 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
 
   return (
     <div className="flex items-center w-full">
-      <ul className="list-none my-2 p-1 w-full">
-        <li className="text-lg rounded flex items-center w-full mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
+      <ul className="list-none my-2 p-1 w-full flex flex-col">
+        <li className="text-lg rounded  w-full mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
           <div className="w-full">
             <div className="flex justify-between w-full items-center">
               <input

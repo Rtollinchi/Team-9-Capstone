@@ -1719,6 +1719,10 @@ body {
 }
 
 @media (min-width: 768px) {
+  .md\:fixed {
+    position: fixed;
+  }
+
   .md\:m-10 {
     margin: 2.5rem;
   }
@@ -1738,6 +1742,10 @@ body {
 
   .md\:mt-5 {
     margin-top: 1.25rem;
+  }
+
+  .md\:block {
+    display: block;
   }
 
   .md\:h-screen {
