@@ -112,6 +112,9 @@ const Profile = () => {
         )}
       </main>
       <div>
+        <h2 className="text-3xl text-white text-center underline m-5">
+          Background Theme
+        </h2>
         <div
           id="background-theme"
           className="h-screen-viewport w-screen-viewport m-10"
@@ -123,7 +126,7 @@ const Profile = () => {
             onClick={() =>
               changeGradient("bg-gradient-to-r from-red-600 to-yellow-400")
             }
-            className="bg-gradient-to-r from-red-600 to-yellow-400 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-r from-red-600 to-yellow-400 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             DEFAULT
           </button>
@@ -131,7 +134,7 @@ const Profile = () => {
             onClick={() =>
               changeGradient("bg-gradient-to-t from-yellow-600 to-red-600")
             }
-            className="bg-gradient-to-t from-yellow-600 to-red-600 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-t from-yellow-600 to-red-600 hover:from-red-500 hover:to-yellow-300 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             BURNING SUNRISE
           </button>
@@ -142,7 +145,7 @@ const Profile = () => {
                 "bg-gradient-to-t from-blue-700 via-blue-800 to-gray-900"
               )
             }
-            className="bg-gradient-to-t from-blue-700 via-blue-800 to-gray-900 hover:from-gray-900 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-t from-blue-700 via-blue-800 to-gray-900 hover:from-gray-900 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             MIDNIGHT
           </button>
@@ -152,7 +155,7 @@ const Profile = () => {
                 "bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r"
               )
             }
-            className="bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r hover:from-gray-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r hover:from-gray-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             SPACE
           </button>
@@ -162,7 +165,7 @@ const Profile = () => {
                 "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600"
               )
             }
-            className="bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600 hover:from-violet-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600 hover:from-violet-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             SALEM
           </button>
@@ -172,7 +175,7 @@ const Profile = () => {
                 "bg-gradient-to-b from-gray-900 via-green-800 to-green-600"
               )
             }
-            className="bg-gradient-to-b from-gray-900 via-green-800 to-green-600 hover:from-green-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-green-800 to-green-600 hover:from-green-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             GREEN
           </button>
@@ -182,7 +185,7 @@ const Profile = () => {
                 "bg-gradient-to-b from-gray-800 via-orange-800 to-orange-500"
               )
             }
-            className="bg-gradient-to-b from-gray-900 via-orange-800 to-orange-500 hover:from-orange-500 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-900 via-orange-800 to-orange-500 hover:from-orange-500 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             ORANGE
           </button>
@@ -192,7 +195,7 @@ const Profile = () => {
                 "bg-gradient-to-b from-gray-800 via-red-800 to-red-600"
               )
             }
-            className="bg-gradient-to-b from-gray-800 via-red-800 to-red-600 hover:from-red-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-2"
+            className="bg-gradient-to-b from-gray-800 via-red-800 to-red-600 hover:from-red-600 hover:to-gray-900 text-white font-semibold py-2 px-4 rounded-md shadow-md border-gray-600 border-2"
           >
             RED
           </button>

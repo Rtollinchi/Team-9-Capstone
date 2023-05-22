@@ -14,9 +14,7 @@ router.get("/", requireToken, async (req, res, next) => {
     const userData = await User.findOne({ where: { id: userId } });
     if (userData) {
       const { avatarUrl } = userData.dataValues;
-      console.log("avatarurl", avatarUrl);
       const imageUrl = `/uploads/${avatarUrl}`;
-      console.log(imageUrl);
       res.json(imageUrl);
     } else {
       res.status(404).json({ error: "User not found" });
@@ -35,13 +33,11 @@ router.put("/uploadImage", requireToken, (req, res) => {
   }
 
   const file = req.files.file;
-
   // Generate a unique filename for the image using the user's ID
   const fileName = `${userId}-${userName}${path.extname(file.name)}`;
 
   // Define the path where the image will be stored
   const filePath = path.join(__dirname, "../../uploads", fileName);
-  console.log(filePath);
   // Move the file to the desired location
   file.mv(filePath, (err) => {
     if (err) {
