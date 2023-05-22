@@ -224,7 +224,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
             </div>
 
             {isDescriptionOpen && (
-              <li className="list-none indent-2 text-lg ml-8 text-white">
+              <div className="list-none indent-2 text-lg ml-8 text-white">
                 <div
                   style={{
                     marginLeft: "10px",
@@ -233,7 +233,7 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
                 >
                   {task.description}
                 </div>
-              </li>
+              </div>
             )}
           </div>
 
