@@ -26,7 +26,8 @@ const Home = () => {
 
   const totalTasks = tasks.length;
   const totalTasksCompleted = tasks.filter((task) => task.isCompleted).length;
-  const percentage = totalTasks === 0 ? 0 : Math.round((totalTasksCompleted / totalTasks) * 100);
+  const percentage =
+    totalTasks === 0 ? 0 : Math.round((totalTasksCompleted / totalTasks) * 100);
 
   const topLevelTasks = tasks.filter(
     (task) => !task.parentId && !task.isCompleted
@@ -120,7 +121,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col h-screen  md:px-10">
-    <header className="flex flex-col items-center mt-10 mb-5 m-1">
+      <header className="flex flex-col items-center mt-10 mb-5 m-1">
         <h1 className="md:text-4xl text-lg text-white underline text-center">
           {getGreeting()}, {username}!
         </h1>
@@ -141,18 +142,18 @@ const Home = () => {
         <h3 className="md:text-3xl text-lg text-white underline text-center m-1">
           Tasks Completed: {totalTasksCompleted}/{totalTasks}
         </h3>
-        <span className="flex">
-        <CircularProgressBar
-          percentage={percentage}
-          strokeWidth={5}
-          trailColor="#333"
-          strokeColor="#999"
-          textColor="#fff"
-        />
+        <span className="flex m-5">
+          <CircularProgressBar
+            percentage={percentage}
+            strokeWidth={5}
+            trailColor="#333"
+            strokeColor="#999"
+            textColor="#fff"
+          />
         </span>
       </header>
-      <main className="overflow-auto md:mt-5 md:w-1/2 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-gray-800">
-        <div className="flex items-center w-auto md:w-1/3 justify-between mb-2 m-1">
+      <main className="overflow-auto md:mt-5 md:w-5/6 md:p-6 m-1 max-h-80 md:mx-auto rounded-md shadow-darker bg-gray-800">
+        <div className="flex items-center w-auto md:w-1/2 justify-between mb-2 m-1">
           <div className="flex flex-grow">
             <input
               type="text"
@@ -190,89 +191,76 @@ const TaskItem = ({ task, getSubtasks, handleUpdate, handleDelete }) => {
 
   const dueDate = new Date(task.dueDate).toLocaleString();
 
-  let dotColor;
-  switch (task.priority) {
-    case "Low":
-      dotColor = "green";
-      break;
-    case "Medium":
-      dotColor = "yellow";
-      break;
-    case "High":
-      dotColor = "red";
-  }
-
   return (
-    <div className="flex items-center">
-    <ul className="list-none my-2 p-1">
-      <li className="text-lg shadow- rounded flex items-center justify-start mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
-        <div>
-          <div className="flex justify-between items-center">
-          <div className={`w-4 h-4 rounded-full mr-4 ${dotColor}`} />
-            <input
-              type="checkbox"
-              className="form-checkbox h-4 w-4 rounded bg-gray-200 mr-4 shadow-darker"
-              checked={task.isCompleted}
-              onChange={() => handleUpdate(task.id, !task.isCompleted)}
-            />
+    <div className="flex items-center w-full">
+      <ul className="list-none my-2 p-1 w-full">
+        <li className="text-lg rounded flex items-center w-full mb-2 p-2 border-b-2 border-white shadow-darker hover:bg-gray-500 transition-colors">
+          <div className="w-full">
+            <div className="flex justify-between w-full items-center">
+              <input
+                type="checkbox"
+                className="form-checkbox h-4 w-4 rounded bg-gray-200 mr-4 shadow-darker"
+                checked={task.isCompleted}
+                onChange={() => handleUpdate(task.id, !task.isCompleted)}
+              />
 
-            <span className="flex-1 text-white">{task.title}</span>
+              <span className="flex-1 text-white">{task.title}</span>
 
-            <button
-              style={{ color: "white", marginLeft: "10px" }}
-              onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
-            >
-              {isDescriptionOpen ? "▲" : "▼"}
-            </button>
+              <button
+                style={{ color: "white", marginLeft: "10px" }}
+                onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
+              >
+                {isDescriptionOpen ? "▲" : "▼"}
+              </button>
 
-            <span className="ml-4 text-lg text-white">Due: {dueDate}</span>
+              <span className="ml-4 text-lg text-white">Due: {dueDate}</span>
 
-            <button
-              className="text-red-500 ml-4"
-              onClick={() => handleDelete(task.id)}
-            >
-              X
-            </button>
+              <button
+                className="text-red-500 ml-4"
+                onClick={() => handleDelete(task.id)}
+              >
+                X
+              </button>
+            </div>
+
+            {isDescriptionOpen && (
+              <li className="list-none indent-2 text-lg ml-8 text-white">
+                <div
+                  style={{
+                    marginLeft: "10px",
+                    color: "white",
+                  }}
+                >
+                  {task.description}
+                </div>
+              </li>
+            )}
           </div>
 
-          {isDescriptionOpen && (
-            <li className="list-none indent-2 text-lg ml-8 text-white">
-              <div
-                style={{
-                  marginLeft: "10px",
-                  color: "white",
-                }}
-              >
-                {task.description}
-              </div>
-            </li>
-          )}
-        </div>
-
-        {subtasks.map((subtask) => (
-          <li
-            key={subtask.id}
-            className="list-none text-center indent-2 text-sm ml-8 text-white text-lg"
-          >
-            <input
-              type="checkbox"
-              className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200 mr-2"
-              checked={subtask.isCompleted}
-              onChange={() => handleUpdate(subtask.id)}
-            />
-
-            {subtask.title}
-
-            <button
-              className="text-red-500 ml-4"
-              onClick={() => handleDelete(subtask.id)}
+          {subtasks.map((subtask) => (
+            <li
+              key={subtask.id}
+              className="list-none text-center indent-2 text-sm ml-8 text-white text-lg"
             >
-              X
-            </button>
-          </li>
-        ))}
-      </li>
-    </ul>
+              <input
+                type="checkbox"
+                className="form-checkbox h-4 w-4 text-indigo-600 border border-gray-300 rounded transition duration-150 ease-in-out bg-gray-200 mr-2"
+                checked={subtask.isCompleted}
+                onChange={() => handleUpdate(subtask.id)}
+              />
+
+              {subtask.title}
+
+              <button
+                className="text-red-500 ml-4"
+                onClick={() => handleDelete(subtask.id)}
+              >
+                X
+              </button>
+            </li>
+          ))}
+        </li>
+      </ul>
     </div>
   );
 };
