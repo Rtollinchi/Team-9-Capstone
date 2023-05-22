@@ -42,45 +42,45 @@ const SignUpForm = ({ name = "signup", displayName = "signup" }) => {
         >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
-          <div className="flex items-center border border-gray rounded-t-md bg-white">
-          <UserIcon
-            style={{ height: "16px", width: "16px" }}
-            className="text-gray-500"
-          />
-          <input
-            name="username"
-            type="text"
-            required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
-            placeholder="Username"
-          />
-        </div>
-        <div className="flex items-center border border-gray bg-white">
-          <MailIcon
-            style={{ height: "16px", width: "16px" }}
-            className="text-gray-500"
-          />
-          <input
-            name="email"
-            type="email"
-            required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
-            placeholder="Email@mail.com"
-          />
-        </div>
-        <div className="flex items-center border border-gray rounded-b-md bg-white">
-          <LockClosedIcon
-            style={{ height: "16px", width: "16px" }}
-            className="text-gray-500 "
-          />
-          <input
-            name="password"
-            type="password"
-            required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
-            placeholder="Password"
-          />
-        </div>
+            <div className="flex items-center border border-gray rounded-t-md bg-white">
+              <UserIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500"
+              />
+              <input
+                name="username"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
+                placeholder="Username"
+              />
+            </div>
+            <div className="flex items-center border border-gray bg-white">
+              <MailIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500"
+              />
+              <input
+                name="email"
+                type="email"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
+                placeholder="Email@mail.com"
+              />
+            </div>
+            <div className="flex items-center border border-gray rounded-b-md bg-white">
+              <LockClosedIcon
+                style={{ height: "16px", width: "16px" }}
+                className="text-gray-500 "
+              />
+              <input
+                name="password"
+                type="password"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray text-gray-900 focus:outline-none focus:ring-0 focus:z-10 sm:text-sm bg-white"
+                placeholder="Password"
+              />
+            </div>
           </div>
 
           <div>
