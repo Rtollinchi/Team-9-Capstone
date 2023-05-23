@@ -8,7 +8,7 @@ const Profile = () => {
   const fileInputRef = useRef(null);
   const currentUser = useSelector((state) => state.auth.me);
   const email = currentUser.email;
-
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
@@ -18,9 +18,10 @@ const Profile = () => {
   const handleUpload = () => {
     const file = fileInputRef.current.files[0];
     if (file) {
-      dispatch(updateProfile(file));
+      dispatch(updateProfile(file)).then(() => setUploadSuccess(true));
     }
   };
+
   //theme changing buttons
   const changeGradient = (newClassName) => {
     const backgroundDiv = document.getElementById("background-theme");
@@ -71,10 +72,12 @@ const Profile = () => {
             <button
               type="button"
               onClick={handleUpload}
-              className="bg-gray-600 text-white font-bold py-2 px-4 rounded"
+              className={`transition-colors duration-500 ease-in-out bg-gray-600 text-white font-bold py-2 px-4 rounded ${
+                uploadSuccess ? "bg-gray-900" : ""
+              }`}
               style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
             >
-              Upload
+              {uploadSuccess ? "Uploaded" : "Upload"}
             </button>
           </div>
         </form>
