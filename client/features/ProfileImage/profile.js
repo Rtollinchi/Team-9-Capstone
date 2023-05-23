@@ -68,28 +68,6 @@ const Profile = () => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label htmlFor="name" className="text-lg font-medium text-white">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="bg-gray-600 rounded-md border-b-2 border-white p-2 outline-none"
-              style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
-            />
-
-            <label htmlFor="age" className="text-lg font-medium text-white">
-              Age
-            </label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              className="bg-gray-600 rounded-md border-b-2 border-white p-2 outline-none"
-              style={{ boxShadow: "5px 5px 10px rgba(0,0,0,0.3)" }}
-            />
-
             <button
               type="button"
               onClick={handleUpload}
@@ -111,7 +89,7 @@ const Profile = () => {
           </div>
         )}
       </main>
-      <div>
+      <div className="justify-center">
         <h2 className="text-3xl text-white text-center underline m-5">
           Background Theme
         </h2>
