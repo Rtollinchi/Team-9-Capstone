@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "heroku-postbuild": "npm i --force",
     "build:dev": "npm run build -- --watch --mode=development",
     "build:css": "tailwind build ./public/css/styles.css -o ./public/css/style.css",
     "seed": "node script/seed.js",
