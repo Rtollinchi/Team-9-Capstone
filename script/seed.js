@@ -66,7 +66,7 @@ async function seed() {
     Task.create({
       userId: 1,
       title: "clean truck",
-      description: "nobody will love you with a turck looking like that",
+      description: "nobody will love you with a truck looking like that",
       scheduledTime: "2023-06-01 12:00:00",
       dueDate: "2023-06-01 12:00:00",
       priority: "High",
