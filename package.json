@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "heroku-prebuild": "npm i --force",
+    "heroku-postbuild": "echo 'Skip Heroku default build'",
     "build:dev": "npm run build -- --watch --mode=development",
     "build:css": "tailwind build ./public/css/styles.css -o ./public/css/style.css",
     "seed": "node script/seed.js",
