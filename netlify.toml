@@ -1,2 +1,3 @@
 [build]
-  command = "npm i --force"
+  command =  "echo 'Skipping npm install' && npm i --force"
+  publish = "main"
